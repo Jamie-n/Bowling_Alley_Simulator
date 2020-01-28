@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-class BowlBall extends Stage {
+class BowlBallDisplay extends Stage {
 
         private Button takeThrow;
         private Button cancelThrow;
@@ -17,7 +17,7 @@ class BowlBall extends Stage {
         private BorderPane mainBorderBox;
 
 
-        public BowlBall() {
+        public BowlBallDisplay() {
             bottomBox = new HBox();
             mainBorderBox = new BorderPane();
 
@@ -45,7 +45,7 @@ class BowlBall extends Stage {
             cancelThrow.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
-                    BowlBall.this.close();
+                    BowlBallDisplay.this.close();
                 }
             });
 

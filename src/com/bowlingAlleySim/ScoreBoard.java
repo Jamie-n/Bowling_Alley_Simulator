@@ -85,7 +85,7 @@ public class ScoreBoard extends Application {
         bowlBall.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                BowlBall dialog = new BowlBall();
+                BowlBallDisplay dialog = new BowlBallDisplay();
                 dialog.initModality(Modality.APPLICATION_MODAL);
                 dialog.initOwner(primaryStage);
                 dialog.show();
