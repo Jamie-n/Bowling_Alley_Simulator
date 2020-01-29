@@ -3,9 +3,10 @@ package com.bowlingAlleySim;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
+
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -61,10 +62,14 @@ public class BowlingAlley {
                 currentPlayer = 0;
             }
         } else {
-            EndGameScreen endGameScreen = new EndGameScreen();
-            endGameScreen.initModality(Modality.APPLICATION_MODAL);
-            endGameScreen.show();
-            gameWinner(gridPane);
+            Alert gameOver = new Alert(Alert.AlertType.CONFIRMATION);
+            gameOver.setTitle("Game Over");
+            gameOver.setContentText("Player "+ gameWinner().getName() +" Has won the game with a score of "+ gameWinner().getScore());
+            gameOver.setHeaderText("The Game Has Ended");
+            Toolkit.getDefaultToolkit().beep();
+            gameOver.showAndWait();
+
+
 
         }
     }
@@ -91,27 +96,17 @@ public class BowlingAlley {
         }
     }
 
-    public String gameWinner(GridPane gridPane) {
-        ArrayList<String> scoreArray = new ArrayList<>();
-        Integer topScore = 0;
-        Node result = null;
-        ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
-        for (Node node : children) {
-            if (node instanceof Label && gridPane.getColumnIndex(node) == 11) {
-                scoreArray.add(((Label) node).getText());
+    public BowlingPlayer gameWinner() {
+        BowlingPlayer topScorer = new BowlingPlayer(null);
+
+        for (BowlingPlayer item : playerList) {
+            if (item.getScore() > topScorer.getScore()) {
+                topScorer = item;
             }
         }
 
-        for(int i = 0; i < scoreArray.size()-1; i++){
-            System.out.println(scoreArray.toString());
-            if(Integer.parseInt(scoreArray.get(i)) > topScore)
-            {
-                topScore = Integer.parseInt(scoreArray.get(i));
-            }
-        }
-
-
-        return topScore.toString();
+        System.out.println(topScorer.getName());
+        return topScorer;
     }
 
 }

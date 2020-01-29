@@ -38,8 +38,9 @@ public class ScoreBoard extends Application {
 
 
     private Button bowlBall;
+    private Button strikeButton;
 
-    private Button stateName;
+
 
     private final Integer NUMBER_OF_ROUNDS = 10;
     private final Integer MAX_PLAYERS = 8;
@@ -62,6 +63,8 @@ public class ScoreBoard extends Application {
         addPlayers = new MenuItem("Add Player");
 
 
+
+
         //Formatting the scoreboard
         gridPane.setAlignment(Pos.TOP_CENTER);
         gridPane.setHgap(50);
@@ -76,9 +79,11 @@ public class ScoreBoard extends Application {
         root.setBottom(bowlBall);
         root.setTop(menuBar);
 
+
         //Setting Alignment
         root.setAlignment(bowlBall, Pos.BOTTOM_LEFT);
         root.setAlignment(gridPane, Pos.CENTER);
+
 
 
 
@@ -96,6 +101,8 @@ public class ScoreBoard extends Application {
                     alley.updateScore(gridPane);
                 }
         });
+
+
 
         Scene scene = new Scene(root, 1000, 300);
 

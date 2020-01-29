@@ -7,11 +7,17 @@ public class BowlingPlayer {
     private String name;
     private Integer score;
     private Integer roundsPlayed;
+    private Integer strikeScored;
+    private Integer spareScored;
 
     public BowlingPlayer(String name) {
         this.name = name;
         this.score = 0;
         this.roundsPlayed = 0;
+        this.strikeScored = 0;
+        this.spareScored = 0;
+
+
     }
 
     public String getName() {
@@ -37,4 +43,25 @@ public class BowlingPlayer {
     public void setRoundsPlayed(Integer roundsPlayed) {
         this.roundsPlayed = roundsPlayed;
     }
+
+
+    public Integer getStrikeScored() {
+        return strikeScored;
+    }
+
+    public void setStrikeScored(Integer strikeScored) {
+        this.strikeScored = strikeScored;
+    }
+
+    public Integer getSpareScored() {
+        return spareScored;
+    }
+
+    public void setSpareScored(Integer spareScored) {
+        this.spareScored = spareScored;
+    }
 }
+
+
+
+
