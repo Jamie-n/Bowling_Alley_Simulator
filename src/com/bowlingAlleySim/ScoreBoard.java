@@ -1,9 +1,12 @@
 package com.bowlingAlleySim;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,17 +14,22 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.NotActiveException;
 
 public class ScoreBoard extends Application {
 
     public GridPane gridPane;
     private BorderPane root;
+
 
 
     private MenuBar menuBar;
@@ -31,8 +39,12 @@ public class ScoreBoard extends Application {
 
     private Button bowlBall;
 
+    private Button stateName;
+
     private final Integer NUMBER_OF_ROUNDS = 10;
     private final Integer MAX_PLAYERS = 8;
+
+    private BowlingAlley alley = new BowlingAlley();
 
 
     public static void main(String[] args) {
@@ -49,20 +61,13 @@ public class ScoreBoard extends Application {
         players = new Menu("Players");
         addPlayers = new MenuItem("Add Player");
 
-        //Generating the top row of the scoreboard
-        for (int i = 0; i < NUMBER_OF_ROUNDS + 1; i++) {
-            if (i == 0) {
-                gridPane.add(new Label("Player Name  "), i, 0);
-            } else {
-                gridPane.add(new Label(Integer.toString(i)), i, 0);
-                gridPane.add(new Label(" "), i, 0);
-            }
-        }
 
         //Formatting the scoreboard
         gridPane.setAlignment(Pos.TOP_CENTER);
-        gridPane.setHgap(30);
-        gridPane.setGridLinesVisible(true);
+        gridPane.setHgap(50);
+        gridPane.setPadding(new Insets(10,30,10,30));
+        gridPane.setMaxWidth(1000);
+
         menuBar.getMenus().add(players);
         players.getItems().add(addPlayers);
 
@@ -76,26 +81,23 @@ public class ScoreBoard extends Application {
         root.setAlignment(gridPane, Pos.CENTER);
 
 
+
         addPlayers.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                // addPlayerRow();
-                addPlayerRow();
-
+                alley.addRows(gridPane);
             }
         });
+
 
         bowlBall.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                BowlBallDisplay dialog = new BowlBallDisplay();
-                dialog.initModality(Modality.APPLICATION_MODAL);
-                dialog.initOwner(primaryStage);
-                dialog.show();
-            }
+                    alley.updateScore(gridPane);
+                }
         });
 
-        Scene scene = new Scene(root, 500, 300);
+        Scene scene = new Scene(root, 1000, 300);
 
         // Show the scene.
         primaryStage.setScene(scene);
@@ -104,26 +106,8 @@ public class ScoreBoard extends Application {
 
     }
 
-    public void addPlayerRow() {
-
-        Integer rowCount = gridPane.getRowCount();
-        int numberOfPlayers = this.gridPane.getRowCount();
-
-        if (numberOfPlayers != 8 + 1) {
-            gridPane.add(new Label("Player " + rowCount), 0, rowCount);
-            for (int i = 0; i < 10 + 1; i++) {
-                gridPane.add(new Label(" "), i, rowCount);
-            }
-        }
-        else{
-            Alert tooManyPlayers = new Alert(Alert.AlertType.ERROR);
-            tooManyPlayers.setTitle("Too Many Players");
-            tooManyPlayers.setContentText("You can only have a maximum of 8 players");
-            tooManyPlayers.setHeaderText("Remove Players");
-            Toolkit.getDefaultToolkit().beep();
-            tooManyPlayers.showAndWait();
-        }
 
 
-    }
 }
+
+
