@@ -54,20 +54,11 @@ public class BowlingAlley {
 
             currentPlayer += 1;
             currentRound += 1;
+            
 
             if (gridPane.getRowCount() == currentPlayer) {
                 currentPlayer = 0;
             }
-
-        } else {
-            Alert gameOver = new Alert(Alert.AlertType.CONFIRMATION);
-            gameOver.setTitle("Game Over");
-            gameOver.setContentText("Player " + gameWinner().getName() + " Has won the game with a score of " + gameWinner().getTotalScore());
-            gameOver.setHeaderText("The Game Has Ended");
-            Toolkit.getDefaultToolkit().beep();
-            gameOver.showAndWait();
-
-
         }
     }
 
@@ -82,86 +73,56 @@ public class BowlingAlley {
                 gridPane.add(new Label(" "), i, rowCount);
             }
             this.addPlayer(rowCount.toString());
-
-        } else {
-            Alert tooManyPlayers = new Alert(Alert.AlertType.ERROR);
-            tooManyPlayers.setTitle("Too Many Players");
-            tooManyPlayers.setContentText("You can only have a maximum of 8 players");
-            tooManyPlayers.setHeaderText("Remove Players");
-            Toolkit.getDefaultToolkit().beep();
-            tooManyPlayers.showAndWait();
         }
     }
 
-    public BowlingPlayer gameWinner() {
-        BowlingPlayer topScorer = new BowlingPlayer(null);
-
-        for (BowlingPlayer item : playerList) {
-            if (item.getTotalScore() > topScorer.getTotalScore()) {
-                topScorer = item;
-            }
-        }
-
-        System.out.println(topScorer.getName());
-        return topScorer;
-    }
 
     public void calculateScore(BowlingPlayer player, GridPane gridPane) {
         Integer bonusPoints = 0;
         Integer currentRound = player.getRoundsPlayed() - 1;
-        System.out.println(player.getOnSpare());
 
-        // if (currentRound >= 0) {
 
         if (currentRound >= 1 || player.getThrow2(currentRound) + player.getThrow1(currentRound) != 10) {
 
-            System.out.println(player.getThrow1(currentRound)+player.getThrow2(currentRound));
 
-            if (player.throw1Array.size() > 1 && (player.getThrow2(currentRound-1) + player.getThrow1(currentRound -1 )) == 10 && (player.getThrow1(currentRound)+player.getThrow2(currentRound))==10) {
+            //Checks for a double spare at the start of the game
+            if (player.throw1Array.size() > 1 && (player.getThrow2(currentRound - 1) + player.getThrow1(currentRound - 1)) == 10 && (player.getThrow1(currentRound) + player.getThrow2(currentRound)) == 10) {
                 player.setOnSpare(true);
-            }else {
+            } else {
                 player.setOnSpare(false);
             }
 
-                if (player.getOnSpare() || player.getThrow1(currentRound-1) + player.getThrow2(currentRound-1) == 10) {
-                    if (!player.getOnSpare() || player.getThrow1(currentRound) + player.getThrow2(currentRound) != 10){
-                        bonusPoints = 10 + player.getThrow1(currentRound);
+            if (player.getOnSpare() || player.getThrow1(currentRound - 1) + player.getThrow2(currentRound - 1) == 10) {
+                //If only 1 spare has been thrown
+                if (!player.getOnSpare() || player.getThrow1(currentRound) + player.getThrow2(currentRound) != 10) {
+                    bonusPoints = 10 + player.getThrow1(currentRound);
                     player.setTotalScore(player.getTotalScore() + bonusPoints + (player.getThrow1(currentRound) + player.getThrow2(currentRound)));
-                        System.out.println("oasfjhofashjfiosf");
-                }else{
-                        bonusPoints = player.getThrow1(currentRound);
-                        player.setTotalScore(player.getTotalScore() + bonusPoints + (player.getThrow1(currentRound) + player.getThrow2(currentRound)));
-                        player.setOnSpare(false);
-                        System.out.println("called");
-                    }
 
-/*}
-                } else if (currentRound > 1 && ((player.getThrow1(currentRound) + player.getThrow2(currentRound)) != 10)&& !player.getOnSpare()) {
-                    bonusPoints = 10 + player.getThrow1(currentRound) + player.getThrow1(currentRound) + player.getThrow2(currentRound);
-                    System.out.println(bonusPoints);
-                    player.setTotalScore(player.getTotalScore() + bonusPoints);
-                    System.out.println("cal spare");
+                    //If a double spare or more was thrown
+                } else {
+                    bonusPoints = player.getThrow1(currentRound);
+                    player.setTotalScore(player.getTotalScore() + bonusPoints + (player.getThrow1(currentRound) + player.getThrow2(currentRound)));
+                    player.setOnSpare(false);
 
-                }*/
-                } else if(player.getThrow1(currentRound) + player.getThrow2(currentRound) != 10){
-                    player.setTotalScore(player.getTotalScore()+ (player.getThrow1(currentRound)+ player.getThrow2(currentRound)));
-                    System.out.println("addd");
                 }
+                //If only a single was thrown
+            } else if (player.getThrow1(currentRound) + player.getThrow2(currentRound) != 10) {
+                player.setTotalScore(player.getTotalScore() + (player.getThrow1(currentRound) + player.getThrow2(currentRound)));
+            }
 
+        }
+
+        ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
+        for (Node node : children) {
+            if (node instanceof Label && gridPane.getRowIndex(node) == currentPlayer && gridPane.getColumnIndex(node) == 11) {
+                ((Label) node).setText(String.valueOf(this.getScore(currentPlayer)));
             }
 
 
-
-            ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
-            for (Node node : children) {
-                if (node instanceof Label && gridPane.getRowIndex(node) == currentPlayer && gridPane.getColumnIndex(node) == 11) {
-                    ((Label) node).setText(String.valueOf(this.getScore(currentPlayer)));
-                }
-
-
-            }
         }
     }
+}
+
 
 
 
