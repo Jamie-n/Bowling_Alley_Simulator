@@ -1,5 +1,6 @@
 package com.bowlingAlleySim;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class BowlingPlayer {
@@ -9,8 +10,10 @@ public class BowlingPlayer {
     private Integer roundsPlayed;
     private Integer strikeScored;
     private Integer spareScored;
-    private Integer bowl1;
-    private Integer bowl2;
+    private Boolean onSpare;
+
+
+
 
     public BowlingPlayer(String name) {
         this.name = name;
@@ -18,27 +21,35 @@ public class BowlingPlayer {
         this.roundsPlayed = 0;
         this.strikeScored = 0;
         this.spareScored = 0;
-        this.bowl1 = 0;
-        this.bowl2 = 0;
-
+        this.onSpare = false;
 
 
     }
+    public ArrayList<Integer> throw1Array = new ArrayList<>();
+    public ArrayList<Integer> throw2Array = new ArrayList<>();
 
-    public Integer getBowl1() {
-        return bowl1;
+
+
+    public void addThrow1(Integer score){
+        throw1Array.add(score);
+    }
+    public void addThrow2(Integer score){
+        throw2Array.add(score);
     }
 
-    public void setBowl1(Integer bowl1) {
-        this.bowl1 = bowl1;
+    public int getThrow1(Integer i){
+        return this.throw1Array.get(i);
+    }
+    public int getThrow2(Integer i){
+        return this.throw2Array.get(i);
     }
 
-    public Integer getBowl2() {
-        return bowl2;
+    public Boolean getOnSpare() {
+        return onSpare;
     }
 
-    public void setBowl2(Integer bowl2) {
-        this.bowl2 = bowl2;
+    public void setOnSpare(Boolean onSpare) {
+        this.onSpare = onSpare;
     }
 
     public String getName() {
@@ -65,21 +76,12 @@ public class BowlingPlayer {
         this.roundsPlayed = roundsPlayed;
     }
 
-    public Integer getStrikeScored() {
-        return strikeScored;
-    }
 
     public void setStrikeScored(Integer strikeScored) {
         this.strikeScored = strikeScored;
     }
 
-    public Integer getSpareScored() {
-        return spareScored;
-    }
 
-    public void setSpareScored(Integer spareScored) {
-        this.spareScored = spareScored;
-    }
 }
 
 

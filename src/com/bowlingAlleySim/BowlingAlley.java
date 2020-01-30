@@ -15,7 +15,8 @@ public class BowlingAlley {
 
     public ArrayList<BowlingPlayer> playerList = new ArrayList<BowlingPlayer>();
     public int currentPlayer;
-    public int currentRound;
+    private int currentRound;
+
 
     BowlingBall ball = new BowlingBall();
 
@@ -49,7 +50,7 @@ public class BowlingAlley {
 
         if (currentRound < (this.playerList.size() * 10)) {
             gridPane.add(new Label(ball.bowlBall(this.playerList.get(currentPlayer))), this.getRoundsPlayed(currentPlayer), Integer.parseInt(this.getName(currentPlayer)));
-            calculateScore(playerList.get(currentPlayer),gridPane);
+            calculateScore(playerList.get(currentPlayer), gridPane);
 
             currentPlayer += 1;
             currentRound += 1;
@@ -58,15 +59,13 @@ public class BowlingAlley {
                 currentPlayer = 0;
             }
 
-        }
-         else {
+        } else {
             Alert gameOver = new Alert(Alert.AlertType.CONFIRMATION);
             gameOver.setTitle("Game Over");
-            gameOver.setContentText("Player "+ gameWinner().getName() +" Has won the game with a score of "+ gameWinner().getTotalScore());
+            gameOver.setContentText("Player " + gameWinner().getName() + " Has won the game with a score of " + gameWinner().getTotalScore());
             gameOver.setHeaderText("The Game Has Ended");
             Toolkit.getDefaultToolkit().beep();
             gameOver.showAndWait();
-
 
 
         }
@@ -109,75 +108,47 @@ public class BowlingAlley {
 
     public void calculateScore(BowlingPlayer player, GridPane gridPane) {
         Integer bonusPoints = 0;
+        Integer currentRound = player.getRoundsPlayed() - 1;
+        System.out.println(player.getOnSpare());
 
-        if(player.getStrikeScored() >= 1 && currentRound != 0){
-            bonusPoints = ((10+(player.getBowl1()+ player.getBowl2()))+ (player.getBowl1()+player.getBowl2()));
-            player.setTotalScore(player.getTotalScore()+bonusPoints);
-            player.setStrikeScored(player.getStrikeScored()-1);
-        }
-        else if (player.getStrikeScored() >=1) {
-            player.setTotalScore(player.getTotalScore() + 10);
-            player.setStrikeScored(0);
-        }
-        else if(player.getSpareScored() >=2 ){
-            if(currentRound ==10){
-                bonusPoints = 10;
-                player.setTotalScore(player.getTotalScore() + bonusPoints);
-                player.setSpareScored(player.getSpareScored() - 1);
+        // if (currentRound >= 0) {
+
+        if (currentRound >= 1 || player.getThrow2(currentRound) + player.getThrow1(currentRound) != 10) {
+
+            System.out.println(player.getThrow1(currentRound)+player.getThrow2(currentRound));
+
+            if (player.throw1Array.size() > 1 && (player.getThrow2(currentRound-1) + player.getThrow1(currentRound -1 )) == 10 && (player.getThrow1(currentRound)+player.getThrow2(currentRound))==10) {
+                player.setOnSpare(true);
+            }else {
+                player.setOnSpare(false);
             }
-            else {
-                bonusPoints = (10 + player.getBowl1() + (player.getBowl1() + player.getBowl2()));
-                player.setTotalScore(player.getTotalScore() + bonusPoints);
-                player.setSpareScored(player.getSpareScored() - 1);
-            }
-        }
-/*
-        if(player.getStrikeScored() > 0 && player.getSpareScored()> 0){
-            if (player.getStrikeScored()==1 && player.getSpareScored()==1){
-                player.setTotalScore(player.getTotalScore()+20);
-                player.setSpareScored(0);
-                player.setStrikeScored(0);
-            }
-        }
-       else if(player.getStrikeScored() > 0) {
-            bonusPoints = player.getStrikeScored()*10;
-            if (player.getStrikeScored() > 2) {
-                bonusPoints = 30;
-                if (currentRound < 3 || currentRound < 3 * playerList.size()) {
-                    player.setTotalScore(bonusPoints);
-                }
-                else {
+
+                if (player.getOnSpare() || player.getThrow1(currentRound-1) + player.getThrow2(currentRound-1) == 10) {
+                    if (!player.getOnSpare() || player.getThrow1(currentRound) + player.getThrow2(currentRound) != 10){
+                        bonusPoints = 10 + player.getThrow1(currentRound);
+                    player.setTotalScore(player.getTotalScore() + bonusPoints + (player.getThrow1(currentRound) + player.getThrow2(currentRound)));
+                        System.out.println("oasfjhofashjfiosf");
+                }else{
+                        bonusPoints = player.getThrow1(currentRound);
+                        player.setTotalScore(player.getTotalScore() + bonusPoints + (player.getThrow1(currentRound) + player.getThrow2(currentRound)));
+                        player.setOnSpare(false);
+                        System.out.println("called");
+                    }
+
+/*}
+                } else if (currentRound > 1 && ((player.getThrow1(currentRound) + player.getThrow2(currentRound)) != 10)&& !player.getOnSpare()) {
+                    bonusPoints = 10 + player.getThrow1(currentRound) + player.getThrow1(currentRound) + player.getThrow2(currentRound);
+                    System.out.println(bonusPoints);
                     player.setTotalScore(player.getTotalScore() + bonusPoints);
+                    System.out.println("cal spare");
+
+                }*/
+                } else if(player.getThrow1(currentRound) + player.getThrow2(currentRound) != 10){
+                    player.setTotalScore(player.getTotalScore()+ (player.getThrow1(currentRound)+ player.getThrow2(currentRound)));
+                    System.out.println("addd");
                 }
-                player.setStrikeScored(player.getStrikeScored() - 1);
-            } else if (player.getStrikeScored() >= 1) {
-                if(player.getSpareScored()>=1){
-                }
-                player.setTotalScore(player.getTotalScore() + player.getStrikeScored() * 10);
 
             }
-
-        }
-        else if(player.getSpareScore() == 0){
-            player.setTotalScore(player.getTotalScore());
-            System.out.println("No");
-        }
-        else if(player.getSpareScored() >= 2){
-            bonusPoints = 10 + player.getSpareScore();
-            player.setTotalScore(player.getTotalScore()+bonusPoints);
-            player.setSpareScored(player.getSpareScored()-1);
-
-        }
-        else if(player.getSpareScored() == 1) {
-            if (player.getSpareScore() == 0) {
-                player.setTotalScore(player.getTotalScore() + 10);
-            } else {
-                bonusPoints = player.getSpareScore();
-                player.setTotalScore(player.getTotalScore() + bonusPoints);
-                player.setSpareScored(player.getSpareScored()-1);
-
-        }
-            }*/
 
 
 
@@ -188,7 +159,9 @@ public class BowlingAlley {
                 }
 
 
+            }
         }
     }
-}
+
+
 
