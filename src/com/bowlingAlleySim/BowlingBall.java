@@ -9,8 +9,8 @@ public class BowlingBall {
 
 
         player.setRoundsPlayed(player.getRoundsPlayed()+1);
-        int bowl1 =5; //(int) (Math.random() * 11);
-        int bowl2 =5;// (int) (Math.random() * bowl1);
+        int bowl1 = (int) (Math.random() * 11);
+        int bowl2 = (int) (Math.random() * bowl1);
 
         System.out.println(bowl1+" "+bowl2);
 
@@ -26,6 +26,7 @@ public class BowlingBall {
 
         else if((bowl1 + bowl2) >= 10){
             player.setSpareScored(player.getSpareScored()+1);
+            player.setSpareScore(bowl1);
             return "/";
 
 

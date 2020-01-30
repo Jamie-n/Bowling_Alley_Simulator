@@ -124,11 +124,20 @@ public class BowlingAlley {
                 player.setTotalScore(player.getTotalScore() + player.getStrikeScored() * 10);
             }
         }
-        else if(player.getSpareScored() > 0) {
-            if(player.getSpareScored() > 2){
-                
-            }
+        else if(player.getSpareScore() == 0){
+            player.setTotalScore(player.getTotalScore());
         }
+        else if(player.getSpareScored() >= 3){
+            bonusPoints = 10 + player.getSpareScore();
+            player.setTotalScore(player.getTotalScore()+bonusPoints);
+            player.setSpareScored(player.getSpareScored()-1);
+
+        }
+        else if(player.getSpareScored() == 2) {
+            bonusPoints = player.getSpareScore()+10;
+            player.setTotalScore(player.getTotalScore()+bonusPoints);
+        }
+
 
             ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
             for (Node node : children) {
