@@ -62,6 +62,7 @@ public class ScoreBoard extends Application {
         players = new Menu("Players");
         addPlayers = new MenuItem("Add Player");
 
+        gridPane.setGridLinesVisible(true);
 
 
 

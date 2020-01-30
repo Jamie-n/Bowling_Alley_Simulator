@@ -110,33 +110,75 @@ public class BowlingAlley {
     public void calculateScore(BowlingPlayer player, GridPane gridPane) {
         Integer bonusPoints = 0;
 
-        if(player.getStrikeScored() > 0) {
+        if(player.getStrikeScored() >= 1 && currentRound != 0){
+            bonusPoints = ((10+(player.getBowl1()+ player.getBowl2()))+ (player.getBowl1()+player.getBowl2()));
+            player.setTotalScore(player.getTotalScore()+bonusPoints);
+            player.setStrikeScored(player.getStrikeScored()-1);
+        }
+        else if (player.getStrikeScored() >=1) {
+            player.setTotalScore(player.getTotalScore() + 10);
+            player.setStrikeScored(0);
+        }
+        else if(player.getSpareScored() >=2 ){
+            if(currentRound ==10){
+                bonusPoints = 10;
+                player.setTotalScore(player.getTotalScore() + bonusPoints);
+                player.setSpareScored(player.getSpareScored() - 1);
+            }
+            else {
+                bonusPoints = (10 + player.getBowl1() + (player.getBowl1() + player.getBowl2()));
+                player.setTotalScore(player.getTotalScore() + bonusPoints);
+                player.setSpareScored(player.getSpareScored() - 1);
+            }
+        }
+/*
+        if(player.getStrikeScored() > 0 && player.getSpareScored()> 0){
+            if (player.getStrikeScored()==1 && player.getSpareScored()==1){
+                player.setTotalScore(player.getTotalScore()+20);
+                player.setSpareScored(0);
+                player.setStrikeScored(0);
+            }
+        }
+       else if(player.getStrikeScored() > 0) {
             bonusPoints = player.getStrikeScored()*10;
             if (player.getStrikeScored() > 2) {
                 bonusPoints = 30;
                 if (currentRound < 3 || currentRound < 3 * playerList.size()) {
                     player.setTotalScore(bonusPoints);
-                } else {
+                }
+                else {
                     player.setTotalScore(player.getTotalScore() + bonusPoints);
                 }
                 player.setStrikeScored(player.getStrikeScored() - 1);
-            } else if (player.getStrikeScored() >= 2) {
+            } else if (player.getStrikeScored() >= 1) {
+                if(player.getSpareScored()>=1){
+                }
                 player.setTotalScore(player.getTotalScore() + player.getStrikeScored() * 10);
+
             }
+
         }
         else if(player.getSpareScore() == 0){
             player.setTotalScore(player.getTotalScore());
+            System.out.println("No");
         }
-        else if(player.getSpareScored() >= 3){
+        else if(player.getSpareScored() >= 2){
             bonusPoints = 10 + player.getSpareScore();
             player.setTotalScore(player.getTotalScore()+bonusPoints);
             player.setSpareScored(player.getSpareScored()-1);
 
         }
-        else if(player.getSpareScored() == 2) {
-            bonusPoints = player.getSpareScore()+10;
-            player.setTotalScore(player.getTotalScore()+bonusPoints);
+        else if(player.getSpareScored() == 1) {
+            if (player.getSpareScore() == 0) {
+                player.setTotalScore(player.getTotalScore() + 10);
+            } else {
+                bonusPoints = player.getSpareScore();
+                player.setTotalScore(player.getTotalScore() + bonusPoints);
+                player.setSpareScored(player.getSpareScored()-1);
+
         }
+            }*/
+
 
 
             ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
