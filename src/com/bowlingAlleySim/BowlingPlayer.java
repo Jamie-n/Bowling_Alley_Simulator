@@ -5,17 +5,19 @@ import java.util.ArrayList;
 public class BowlingPlayer {
 
     private String name;
-    private Integer score;
+    private Integer totalScore;
     private Integer roundsPlayed;
     private Integer strikeScored;
     private Integer spareScored;
+    private Integer spareScore;
 
     public BowlingPlayer(String name) {
         this.name = name;
-        this.score = 0;
+        this.totalScore = 0;
         this.roundsPlayed = 0;
         this.strikeScored = 0;
         this.spareScored = 0;
+        this.spareScore = 0;
 
 
     }
@@ -28,12 +30,12 @@ public class BowlingPlayer {
         this.name = name;
     }
 
-    public Integer getScore() {
-        return score;
+    public Integer getTotalScore() {
+        return totalScore;
     }
 
-    public void setScore(Integer score) {
-        this.score = score;
+    public void setTotalScore(Integer totalScore) {
+        this.totalScore = totalScore;
     }
 
     public Integer getRoundsPlayed() {
@@ -43,7 +45,6 @@ public class BowlingPlayer {
     public void setRoundsPlayed(Integer roundsPlayed) {
         this.roundsPlayed = roundsPlayed;
     }
-
 
     public Integer getStrikeScored() {
         return strikeScored;
@@ -60,8 +61,15 @@ public class BowlingPlayer {
     public void setSpareScored(Integer spareScored) {
         this.spareScored = spareScored;
     }
-}
 
+    public Integer getSpareScore() {
+        return spareScore;
+    }
+
+    public void setSpareScore(Integer spareScore) {
+        this.spareScore = spareScore;
+    }
+}
 
 
 

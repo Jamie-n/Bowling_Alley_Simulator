@@ -28,7 +28,7 @@ public class BowlingAlley {
     }
 
     public Integer getScore(Integer index) {
-        return playerList.get(index).getScore();
+        return playerList.get(index).getTotalScore();
     }
 
     public Integer getRoundsPlayed(Integer index) {
@@ -46,25 +46,23 @@ public class BowlingAlley {
 
     public void updateScore(GridPane gridPane) {
 
-        if (currentRound < (this.playerList.size() * 10) && currentPlayer != this.playerList.size()) {
+
+        if (currentRound < (this.playerList.size() * 10)) {
             gridPane.add(new Label(ball.bowlBall(this.playerList.get(currentPlayer))), this.getRoundsPlayed(currentPlayer), Integer.parseInt(this.getName(currentPlayer)));
-            Node result = null;
-            ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
-            for (Node node : children) {
-                if (node instanceof Label && gridPane.getRowIndex(node) == currentPlayer && gridPane.getColumnIndex(node) == 11) {
-                    ((Label) node).setText(String.valueOf(this.getScore(currentPlayer)));
-                }
-            }
+            calculateScore(playerList.get(currentPlayer),gridPane);
+
             currentPlayer += 1;
             currentRound += 1;
 
             if (gridPane.getRowCount() == currentPlayer) {
                 currentPlayer = 0;
             }
-        } else {
+
+        }
+         else {
             Alert gameOver = new Alert(Alert.AlertType.CONFIRMATION);
             gameOver.setTitle("Game Over");
-            gameOver.setContentText("Player "+ gameWinner().getName() +" Has won the game with a score of "+ gameWinner().getScore());
+            gameOver.setContentText("Player "+ gameWinner().getName() +" Has won the game with a score of "+ gameWinner().getTotalScore());
             gameOver.setHeaderText("The Game Has Ended");
             Toolkit.getDefaultToolkit().beep();
             gameOver.showAndWait();
@@ -100,7 +98,7 @@ public class BowlingAlley {
         BowlingPlayer topScorer = new BowlingPlayer(null);
 
         for (BowlingPlayer item : playerList) {
-            if (item.getScore() > topScorer.getScore()) {
+            if (item.getTotalScore() > topScorer.getTotalScore()) {
                 topScorer = item;
             }
         }
@@ -109,5 +107,37 @@ public class BowlingAlley {
         return topScorer;
     }
 
+    public void calculateScore(BowlingPlayer player, GridPane gridPane) {
+        Integer bonusPoints = 0;
+
+        if(player.getStrikeScored() > 0) {
+            bonusPoints = player.getStrikeScored()*10;
+            if (player.getStrikeScored() > 2) {
+                bonusPoints = 30;
+                if (currentRound < 3 || currentRound < 3 * playerList.size()) {
+                    player.setTotalScore(bonusPoints);
+                } else {
+                    player.setTotalScore(player.getTotalScore() + bonusPoints);
+                }
+                player.setStrikeScored(player.getStrikeScored() - 1);
+            } else if (player.getStrikeScored() >= 2) {
+                player.setTotalScore(player.getTotalScore() + player.getStrikeScored() * 10);
+            }
+        }
+        else if(player.getSpareScored() > 0) {
+            if(player.getSpareScored() > 2){
+                
+            }
+        }
+
+            ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
+            for (Node node : children) {
+                if (node instanceof Label && gridPane.getRowIndex(node) == currentPlayer && gridPane.getColumnIndex(node) == 11) {
+                    ((Label) node).setText(String.valueOf(this.getScore(currentPlayer)));
+                }
+
+
+        }
+    }
 }
 
