@@ -54,11 +54,12 @@ public class BowlingAlley {
 
             currentPlayer += 1;
             currentRound += 1;
-            
+
 
             if (gridPane.getRowCount() == currentPlayer) {
                 currentPlayer = 0;
             }
+            
         }
     }
 
