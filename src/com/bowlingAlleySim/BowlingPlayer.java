@@ -23,6 +23,11 @@ public class BowlingPlayer {
     public ArrayList<Integer> throw1Array = new ArrayList<>();
     public ArrayList<Integer> throw2Array = new ArrayList<>();
 
+
+
+
+
+
     public void addThrow1(Integer score1) {
         throw1Array.add(score1);
     }
