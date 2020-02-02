@@ -91,35 +91,40 @@ public class BowlingAlley {
         Integer extraFrameSpare = 0;
         Integer extraFrameStrike = 0;
 
+        if(player.getThrow1(currentRound) == 10){
+            System.out.println("Strike");
+            player.setStrikeInRow(player.getStrikeInRow()+1);
+        }
+
 
 
         if (currentRound >= 1 || player.getThrow2(currentRound) + player.getThrow1(currentRound) != 10) {
 
-                totalForFrame = player.getThrow1(currentRound) + player.getThrow2(currentRound);
+            totalForFrame = player.getThrow1(currentRound) + player.getThrow2(currentRound);
 
-                if(currentRound >= 1) {
-                    totalLastFrame = player.getThrow1(currentRound - 1) + player.getThrow2(currentRound - 1);
+            if(currentRound >= 1) {
+                totalLastFrame = player.getThrow1(currentRound - 1) + player.getThrow2(currentRound - 1);
 
-                    if(player.getThrow1(currentRound-1)==10){
-                        player.setOnStrike(true);
-                    }else{
-                        player.setOnStrike(false);
-                    }
+                if(player.getThrow1(currentRound-1)==10){
+                    player.setOnStrike(true);
+                }else{
+                    player.setOnStrike(false);
                 }
-             if(currentRound >=9) {
+            }
+            if(currentRound >=9) {
 
-                 //Gets the value for the bonus frame caused by a strike/spare
+                //Gets the value for the bonus frame caused by a strike/spare
                 extraFrameSpare = player.getThrow1(currentRound);
                 extraFrameStrike = player.getThrow1(currentRound)+player.getThrow2(currentRound);
 
             }
-             if(currentRound == 9 && totalForFrame != 10){
-                 System.out.println("Game Over");
-                 player.setGameOver(true);
-                 player.throw1Array.add(currentRound + 1, 0);
-                 player.throw2Array.add(currentRound + 1, 0);
+            if(currentRound == 9 && totalForFrame != 10){
+                System.out.println("Game Over");
+                player.setGameOver(true);
+                player.throw1Array.add(currentRound + 1, 0);
+                player.throw2Array.add(currentRound + 1, 0);
 
-             }
+            }
             System.out.println(totalForFrame);
             System.out.println(totalLastFrame);
 
@@ -130,13 +135,34 @@ public class BowlingAlley {
                 player.setOnSpare(false);
             }
 
+            System.out.println(player.throw1Array.toString());
 
-            if(player.getOnStrike()) {
-                bonusPoints = 10 + totalForFrame;
-                player.setTotalScore(player.getTotalScore()+bonusPoints+totalForFrame);
+
+            if(player.getOnStrike() && currentRound >= 2 || player.getStrikeInRow() >= 1) {
+                if(player.getThrow1(currentRound)!= 10 && player.getStrikeInRow() > 2){
+                    
+
+                }else if(player.getThrow1(currentRound)!= 10 && player.getStrikeInRow() >= 1) {
+                    System.out.println(player.getStrikeInRow());
+                    bonusPoints = 10 * player.getStrikeInRow() + player.getThrow1(currentRound);
+                    player.setTotalScore(player.getTotalScore()+bonusPoints+totalForFrame);
+                    player.setStrikeInRow(-1);
+                    System.out.println("strike 2");
+
+                }
+
+
+
+
+
+
+
+
 
 
             } else if (player.getOnSpare() || totalLastFrame == 10) {
+                player.setStrikeInRow(0);
+                System.out.println("2 throws had");
 
                 //Final round spare
                 if (currentRound == 10 && totalLastFrame == 10) {
@@ -163,9 +189,12 @@ public class BowlingAlley {
                 }
                 //If only a single was thrown
             } else if (totalForFrame != 10) {
+                player.setStrikeInRow(0);
+                System.out.println("2 throws had");
                 player.setTotalScore(player.getTotalScore() + totalForFrame);
 
             }
+
 
         }
 
@@ -183,7 +212,3 @@ public class BowlingAlley {
 
     }
 }
-
-
-
-

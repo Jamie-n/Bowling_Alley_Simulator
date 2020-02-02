@@ -11,6 +11,7 @@ public class BowlingPlayer {
     private Boolean onSpare;
     private Boolean onStrike;
     private Boolean gameOver;
+    private Integer strikeInRow;
 
 
     public BowlingPlayer(String name) {
@@ -20,6 +21,7 @@ public class BowlingPlayer {
         this.onSpare = false;
         this.onStrike = false;
         this.gameOver = false;
+        this.strikeInRow = 0;
 
 
     }
@@ -27,6 +29,13 @@ public class BowlingPlayer {
     public ArrayList<Integer> throw1Array = new ArrayList<>();
     public ArrayList<Integer> throw2Array = new ArrayList<>();
 
+    public Integer getStrikeInRow() {
+        return strikeInRow;
+    }
+
+    public void setStrikeInRow(Integer strikeInRow) {
+        this.strikeInRow = strikeInRow;
+    }
 
     public Boolean getGameOver() {
         return gameOver;
