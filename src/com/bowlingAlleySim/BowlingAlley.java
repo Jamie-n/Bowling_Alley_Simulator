@@ -141,6 +141,7 @@ public class BowlingAlley {
             if (player.getOnStrike() && currentRound >= 2 && player.getStrikeInRow() >= 3) {
                 player.setTotalScore(player.getTotalScore() + 10 * player.getStrikeInRow());
                 player.setStrikeInRow(player.getStrikeInRow() - 1);
+                System.out.println("Strike in Chain");
 
                 //single Strike
             }else if(player.getOnStrike()&& player.getThrow1(currentRound) != 10 && player.getStrikeInRow() == 1){
@@ -158,6 +159,7 @@ public class BowlingAlley {
                     System.out.println(bonusPoints);
                     player.setTotalScore(player.getTotalScore()+bonusPoints);
                     player.setStrikeInRow(player.getStrikeInRow()-1);
+                    System.out.println("End of strike chain");
                 }
             }
 /*
