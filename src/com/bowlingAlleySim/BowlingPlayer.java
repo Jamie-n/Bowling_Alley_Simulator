@@ -9,6 +9,8 @@ public class BowlingPlayer {
     private Integer totalScore;
     private Integer roundsPlayed;
     private Boolean onSpare;
+    private Boolean onStrike;
+    private Boolean gameOver;
 
 
     public BowlingPlayer(String name) {
@@ -16,6 +18,8 @@ public class BowlingPlayer {
         this.totalScore = 0;
         this.roundsPlayed = 0;
         this.onSpare = false;
+        this.onStrike = false;
+        this.gameOver = false;
 
 
     }
@@ -24,9 +28,21 @@ public class BowlingPlayer {
     public ArrayList<Integer> throw2Array = new ArrayList<>();
 
 
+    public Boolean getGameOver() {
+        return gameOver;
+    }
 
+    public void setGameOver(Boolean gameOver) {
+        this.gameOver = gameOver;
+    }
 
+    public Boolean getOnStrike() {
+        return onStrike;
+    }
 
+    public void setOnStrike(Boolean onStrike) {
+        this.onStrike = onStrike;
+    }
 
     public void addThrow1(Integer score1) {
         throw1Array.add(score1);
