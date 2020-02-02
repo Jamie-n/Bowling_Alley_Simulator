@@ -46,9 +46,9 @@ public class BowlingAlley {
 
 
     public void updateScore(GridPane gridPane) {
-        if(playerList.get(currentPlayer).getGameOver()|| playerList.get(currentPlayer).getRoundsPlayed() ==11){
+        if (playerList.get(currentPlayer).getGameOver() || playerList.get(currentPlayer).getRoundsPlayed() == 11) {
             System.out.println("Game over!");
-        }else {
+        } else {
 
             int currentPlayerRound = playerList.get(currentPlayer).getRoundsPlayed();
             if (currentPlayerRound < (this.playerList.size() * 11) || playerList.get(currentPlayerRound).getThrow2(currentPlayerRound - 1) + playerList.get(currentPlayer).getThrow1(currentPlayerRound - 1) == 10) {
@@ -91,34 +91,32 @@ public class BowlingAlley {
         Integer extraFrameSpare = 0;
         Integer extraFrameStrike = 0;
 
-        if(player.getThrow1(currentRound) == 10){
-            System.out.println("Strike");
-            player.setStrikeInRow(player.getStrikeInRow()+1);
+        if (player.getThrow1(currentRound) == 10) {
+            player.setStrikeInRow(player.getStrikeInRow() + 1);
         }
-
 
 
         if (currentRound >= 1 || player.getThrow2(currentRound) + player.getThrow1(currentRound) != 10) {
 
             totalForFrame = player.getThrow1(currentRound) + player.getThrow2(currentRound);
 
-            if(currentRound >= 1) {
+            if (currentRound >= 1) {
                 totalLastFrame = player.getThrow1(currentRound - 1) + player.getThrow2(currentRound - 1);
 
-                if(player.getThrow1(currentRound-1)==10){
+                if (player.getThrow1(currentRound - 1) == 10) {
                     player.setOnStrike(true);
-                }else{
+                } else {
                     player.setOnStrike(false);
                 }
             }
-            if(currentRound >=9) {
+            if (currentRound >= 9) {
 
                 //Gets the value for the bonus frame caused by a strike/spare
                 extraFrameSpare = player.getThrow1(currentRound);
-                extraFrameStrike = player.getThrow1(currentRound)+player.getThrow2(currentRound);
+                extraFrameStrike = player.getThrow1(currentRound) + player.getThrow2(currentRound);
 
             }
-            if(currentRound == 9 && totalForFrame != 10){
+            if (currentRound == 9 && totalForFrame != 10) {
                 System.out.println("Game Over");
                 player.setGameOver(true);
                 player.throw1Array.add(currentRound + 1, 0);
@@ -136,78 +134,79 @@ public class BowlingAlley {
             }
 
             System.out.println(player.throw1Array.toString());
+            System.out.println(player.getStrikeInRow());
 
 
-            if(player.getOnStrike() && currentRound >= 2 || player.getStrikeInRow() >= 1) {
-                if(player.getThrow1(currentRound)!= 10 && player.getStrikeInRow() > 2){
-                    
+            //More than 3 strikes in a row
+            if (player.getOnStrike() && currentRound >= 2 && player.getStrikeInRow() >= 3) {
+                player.setTotalScore(player.getTotalScore() + 10 * player.getStrikeInRow());
+                player.setStrikeInRow(player.getStrikeInRow() - 1);
 
-                }else if(player.getThrow1(currentRound)!= 10 && player.getStrikeInRow() >= 1) {
-                    System.out.println(player.getStrikeInRow());
-                    bonusPoints = 10 * player.getStrikeInRow() + player.getThrow1(currentRound);
-                    player.setTotalScore(player.getTotalScore()+bonusPoints+totalForFrame);
-                    player.setStrikeInRow(-1);
-                    System.out.println("strike 2");
+                //single Strike
+            }else if(player.getOnStrike()&& player.getThrow1(currentRound) != 10 && player.getStrikeInRow() == 1){
+                    bonusPoints = 10 + totalForFrame + totalForFrame;
+                    player.setTotalScore(player.getTotalScore()+ bonusPoints);
+                    player.setStrikeInRow(player.getStrikeInRow()-1);
+                    System.out.println("Regular Strike");
 
+
+
+            } else if (player.getOnStrike() && player.getThrow1(currentRound-1) == 10 && player.getThrow1(currentRound) != 10) {
+                while (player.getStrikeInRow() > 0){
+                    bonusPoints += player.getThrow1(currentRound- player.getStrikeInRow()+ player.getThrow2(currentRound- player.getStrikeInRow()));
+                    bonusPoints += totalForFrame;
+                    System.out.println(bonusPoints);
+                    player.setTotalScore(player.getTotalScore()+bonusPoints);
+                    player.setStrikeInRow(player.getStrikeInRow()-1);
                 }
-
-
-
-
-
-
-
-
-
+            }
+/*
 
             } else if (player.getOnSpare() || totalLastFrame == 10) {
-                player.setStrikeInRow(0);
-                System.out.println("2 throws had");
+
+
 
                 //Final round spare
-                if (currentRound == 10 && totalLastFrame == 10) {
+                 if (currentRound == 10 && totalLastFrame == 10) {
                     bonusPoints = 10 + extraFrameSpare;
                     player.setTotalScore(player.getTotalScore() + bonusPoints);
                     player.throw2Array.add(currentRound + 1, 0);
-                    System.out.println(player.throw2Array.toString());
                 } else {
                     //If only 1 spare has been thrown
                     if (!player.getOnSpare() && totalForFrame != 10) {
                         bonusPoints = 10 + player.getThrow1(currentRound);
                         System.out.println(bonusPoints);
                         player.setTotalScore(player.getTotalScore() + bonusPoints + (totalForFrame));
-                        System.out.println("1");
 
                         //If a double spare or more was thrown
                     } else {
                         bonusPoints = 10 + player.getThrow1(currentRound);
                         player.setTotalScore(player.getTotalScore() + bonusPoints);
                         player.setOnSpare(false);
-                        System.out.println("2");
                     }
 
                 }
                 //If only a single was thrown
             } else if (totalForFrame != 10) {
-                player.setStrikeInRow(0);
-                System.out.println("2 throws had");
                 player.setTotalScore(player.getTotalScore() + totalForFrame);
 
             }
 
 
         }
+*/
 
 
-
-        ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
-        for (Node node : children) {
-            if (node instanceof Label && gridPane.getRowIndex(node) == currentPlayer && gridPane.getColumnIndex(node) == 12) {
-                ((Label) node).setText(String.valueOf(this.getScore(currentPlayer)));
-            }
         }
+            ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
+            for (Node node : children) {
+                if (node instanceof Label && gridPane.getRowIndex(node) == currentPlayer && gridPane.getColumnIndex(node) == 12) {
+                    ((Label) node).setText(String.valueOf(this.getScore(currentPlayer)));
+                }
+            }
 
-        gridPane.add(new Label(new CalculateScoreSymbols().calculateSymbols(player.getThrow1(currentRound), player.getThrow2(currentRound), currentRound)), currentRound + 1, currentPlayer);
+            gridPane.add(new Label(new CalculateScoreSymbols().calculateSymbols(player.getThrow1(currentRound), player.getThrow2(currentRound), currentRound)), currentRound + 1, currentPlayer);
+
 
 
     }
