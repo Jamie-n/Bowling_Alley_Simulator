@@ -46,12 +46,12 @@ public class BowlingAlley {
 
 
     public void updateScore(GridPane gridPane) {
-        if (playerList.get(currentPlayer).getGameOver() || playerList.get(currentPlayer).getRoundsPlayed() == 11) {
-            System.out.println("Game over!");
+        if (playerList.get(currentPlayer).getGameOver()) {
+            System.out.println("Game is finished");
         } else {
 
             int currentPlayerRound = playerList.get(currentPlayer).getRoundsPlayed();
-            if (currentPlayerRound < (this.playerList.size() * 11) || playerList.get(currentPlayerRound).getThrow2(currentPlayerRound - 1) + playerList.get(currentPlayer).getThrow1(currentPlayerRound - 1) == 10) {
+            if (currentPlayerRound < (this.playerList.size() * 12) || playerList.get(currentPlayerRound).getThrow2(currentPlayerRound - 1) + playerList.get(currentPlayer).getThrow1(currentPlayerRound - 1) == 10) {
 
                 ball.bowlBall(this.playerList.get(currentPlayer));
                 calculateScore(playerList.get(currentPlayer), gridPane);
@@ -71,7 +71,7 @@ public class BowlingAlley {
         int numberOfPlayers = gridPane.getRowCount();
         if (numberOfPlayers != 8 + 1) {
             gridPane.add(new Label("Player " + rowCount), 0, rowCount);
-            gridPane.add(new Label("0"), 12, rowCount);
+            gridPane.add(new Label("0"), 13, rowCount);
 
             for (int i = 0; i < 11 + 1; i++) {
                 gridPane.add(new Label(" "), i, rowCount);
@@ -114,17 +114,23 @@ public class BowlingAlley {
                 //Gets the value for the bonus frame caused by a strike/spare
                 extraFrameSpare = player.getThrow1(currentRound);
                 extraFrameStrike = player.getThrow1(currentRound) + player.getThrow2(currentRound);
+                System.out.println(totalForFrame);
 
             }
-            if (currentRound == 9 && totalForFrame != 10) {
-                System.out.println("Game Over");
-                player.setGameOver(true);
-                player.throw1Array.add(currentRound + 1, 0);
-                player.throw2Array.add(currentRound + 1, 0);
+            if (currentRound >= 9) {
+                if(currentRound == 9 && totalForFrame != 10) {
+                    System.out.println("Game is finished");
+                    player.setGameOver(true);
+                } else if(currentRound == 11){
+                    System.out.println("Game Over");
+                    player.setGameOver(true);
+                    player.throw1Array.add(currentRound + 1);
+                }
 
             }
+
+
             System.out.println(totalForFrame);
-            System.out.println(totalLastFrame);
 
             //Checks for a double spare at the start of the game
             if (player.throw1Array.size() >= 1 && (totalLastFrame) == 10 && (totalForFrame) == 10) {
@@ -149,7 +155,6 @@ public class BowlingAlley {
                     player.setTotalScore(player.getTotalScore()+ bonusPoints);
                     player.setStrikeInRow(player.getStrikeInRow()-1);
                     System.out.println("Regular Strike");
-
 
 
             } else if (player.getOnStrike() && player.getThrow1(currentRound-1) == 10 && player.getThrow1(currentRound) != 10) {
@@ -202,7 +207,7 @@ public class BowlingAlley {
         }
             ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
             for (Node node : children) {
-                if (node instanceof Label && gridPane.getRowIndex(node) == currentPlayer && gridPane.getColumnIndex(node) == 12) {
+                if (node instanceof Label && gridPane.getRowIndex(node) == currentPlayer && gridPane.getColumnIndex(node) == 13) {
                     ((Label) node).setText(String.valueOf(this.getScore(currentPlayer)));
                 }
             }

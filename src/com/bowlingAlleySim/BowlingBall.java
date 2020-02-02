@@ -10,8 +10,8 @@ public class BowlingBall {
 
     public void bowlBall(BowlingPlayer player) {
 
-        int[] bowl_1 = new int[]{10,10,10,10,10,10,10,5,0,0,2};
-        int[] bowl_2 = new int[]{0,0,0,0,0,0,0,0,0,0,0,2};
+        int[] bowl_1 = new int[]{10,10,10,10,10,10,10,5,0,10,10,10};
+        int[] bowl_2 = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0};
 
         player.setRoundsPlayed(player.getRoundsPlayed() + 1);
 
@@ -28,6 +28,10 @@ public class BowlingBall {
             return "X";
         }
         int bowl2 = ThreadLocalRandom.current().nextInt(0, (10-bowl1));*/
+
+    }
+
+    public void endStrike(BowlingPlayer player){
 
     }
 }
