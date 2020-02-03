@@ -10,8 +10,8 @@ public class BowlingBall {
 
     public void bowlBall(BowlingPlayer player) {
 
-        int[] bowl_1 = new int[]{10,10,10,10,10,10,10,10,10,10,10,10};
-        int[] bowl_2 = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] bowl_1 = new int[]{10,10,5,10,5,10,10,10,5,10,10,10};
+        int[] bowl_2 = new int[]{0,0,5,0,0,0,0,0,0,5,0,0,0};
 
         player.setRoundsPlayed(player.getRoundsPlayed() + 1);
 
