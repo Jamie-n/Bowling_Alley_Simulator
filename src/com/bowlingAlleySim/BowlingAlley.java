@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 
 
@@ -67,17 +68,16 @@ public class BowlingAlley {
 
 
     public void addRows(GridPane gridPane) {
-        Integer rowCount = gridPane.getRowCount();
-        int numberOfPlayers = gridPane.getRowCount();
+        Integer numberOfPlayers = playerList.size();
         if (numberOfPlayers != 8 + 1) {
-            gridPane.add(new Label("Player " + rowCount), 0, rowCount);
-            gridPane.add(new Label("0"), 13, rowCount);
+            gridPane.add(new Label("Player " + numberOfPlayers), 0, numberOfPlayers);
+            gridPane.add(new Label("0"), 13, numberOfPlayers);
 
             for (int i = 0; i < 11 + 1; i++) {
-                gridPane.add(new Label(" "), i, rowCount);
+                gridPane.add(new Label(" "), i, numberOfPlayers);
 
             }
-            this.addPlayer(rowCount.toString());
+            this.addPlayer(numberOfPlayers.toString());
         }
 
     }
