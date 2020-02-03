@@ -1,14 +1,9 @@
-package com.bowlingAlleySim;
+package com.bowlingalleysim;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,18 +12,13 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.NotActiveException;
+import java.io.IOException;
 
 public class ScoreBoard extends Application {
     @FXML
@@ -69,7 +59,8 @@ public class ScoreBoard extends Application {
     private Label scoreboardHeader;
     @FXML
     private VBox scoreBoardContainer;
-    private BowlingAlley alley = new BowlingAlley();
+
+    private ScoreBoardController alley = new ScoreBoardController();
 
 
 
@@ -79,9 +70,8 @@ public class ScoreBoard extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("bowlingSimulator.fxml"));
 
-
+        Parent root = FXMLLoader.load(getClass().getResource("scoreboard.fxml"));
 
         Scene scene = new Scene(root, 750, 310);
 
@@ -98,7 +88,7 @@ public class ScoreBoard extends Application {
         gridPane.setGridLinesVisible(true);
     }
 
-    public void bowlBall(ActionEvent actionEvent) {
+    public void bowlBall(ActionEvent actionEvent) throws IOException {
         alley.updateScore(gridPane);
     }
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="root" prefHeight="321.0" prefWidth="911.0" snapToPixel="false" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingAlleySim.ScoreBoard">
+<BorderPane fx:id="root" prefHeight="321.0" prefWidth="911.0" snapToPixel="false" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingalleysim.ScoreBoard">
    <top>
        <VBox fx:id="menuBox" BorderPane.alignment="CENTER">
            <HBox fx:id="topHbox" prefHeight="0.0" prefWidth="623.0">

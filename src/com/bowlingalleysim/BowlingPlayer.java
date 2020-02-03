@@ -1,6 +1,5 @@
-package com.bowlingAlleySim;
+package com.bowlingalleysim;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class BowlingPlayer {
