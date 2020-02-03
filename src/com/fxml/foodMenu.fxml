@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane prefHeight="308.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingsim.foodmenu.FoodMenuController">
+   <tabs>
+      <Tab closable="false" text="Starters" />
+      <Tab closable="false" text="Mains" />
+       <Tab closable="false" text="Deserts" />
+       <Tab closable="false" text="Kids Menu">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="276.0" prefWidth="295.0" />
+        </content>
+      </Tab>
+   </tabs>
+   <opaqueInsets>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </opaqueInsets>
+</TabPane>

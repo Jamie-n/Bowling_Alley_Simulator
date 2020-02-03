@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="containerPane" prefHeight="303.0" prefWidth="201.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingalleysim.WinnerScreen">
+<BorderPane fx:id="containerPane" prefHeight="303.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingalleysim.winnerScreen.WinnerScreen">
    <center>
       <HBox fx:id="midBox" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>

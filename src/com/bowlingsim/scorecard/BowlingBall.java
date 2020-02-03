@@ -1,4 +1,4 @@
-package com.bowlingalleysim;
+package com.bowlingsim.scorecard;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -6,8 +6,6 @@ public class BowlingBall {
 
 
     public void bowlBall(BowlingPlayer player) {
-
-
 
         player.setRoundsPlayed(player.getRoundsPlayed() + 1);
         int bowl1 = ThreadLocalRandom.current().nextInt(0, 10 + 1);

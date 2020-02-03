@@ -1,7 +1,10 @@
-package com.bowlingalleysim;
+package com.bowlingsim.scorecard;
+
+
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import java.io.IOException;
@@ -14,6 +17,7 @@ public class ScoreBoardController {
     public ArrayList<BowlingPlayer> playerList = new ArrayList<BowlingPlayer>();
     public int currentPlayer;
     private int currentRound;
+
 
 
     BowlingBall ball = new BowlingBall();
@@ -34,7 +38,9 @@ public class ScoreBoardController {
         if (playerList.get(currentPlayer).getGameOver()) {
             System.out.println(currentPlayer);
             if(currentPlayer == 0){
-                System.out.println("Game over");
+                getWinner(this.playerList);
+
+
             }
 
         } else {
@@ -56,6 +62,25 @@ public class ScoreBoardController {
         }
     }
 
+    public void getWinner(ArrayList<BowlingPlayer> bowler) {
+
+        Integer highScore = 0;
+        String name = "";
+        System.out.println(bowler.size());
+
+        for (BowlingPlayer player : bowler) {
+            if (player.getTotalScore() > highScore) {
+                highScore = player.getTotalScore();
+                name = player.getName();
+            }
+        }
+        Alert winnerAlert = new Alert(Alert.AlertType.INFORMATION);
+        winnerAlert.setTitle("Game Over");
+        winnerAlert.setContentText("Player " +name+ " has won the game with " +highScore+" points!");
+        winnerAlert.setHeaderText("Game Over");
+        winnerAlert.showAndWait();
+    }
+
 
 
     public void addRows(GridPane gridPane) {
@@ -69,6 +94,12 @@ public class ScoreBoardController {
 
             }
             this.addPlayer(numberOfPlayers.toString());
+        }else{
+            Alert tooManyPlayers = new Alert(Alert.AlertType.WARNING);
+            tooManyPlayers.setTitle("Too Many Players");
+            tooManyPlayers.setContentText("Can only have a maximum of 8 players on one lane");
+            tooManyPlayers.setHeaderText("Too Many Players");
+            tooManyPlayers.showAndWait();
         }
 
     }

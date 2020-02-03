@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="root" prefHeight="321.0" prefWidth="911.0" snapToPixel="false" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingalleysim.ScoreBoard">
+<BorderPane fx:id="root" prefHeight="321.0" prefWidth="911.0" snapToPixel="false" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingsim.scorecard.ScoreBoard">
    <top>
        <VBox fx:id="menuBox" BorderPane.alignment="CENTER">
            <HBox fx:id="topHbox" prefHeight="0.0" prefWidth="623.0">
@@ -17,10 +17,10 @@
                    </Menu>
                <Menu fx:id="cafeMenu" mnemonicParsing="false" text="Cafe">
                  <items>
-                   <MenuItem fx:id="orderFoodMI" mnemonicParsing="false" text="Food" />
-                     <MenuItem fx:id="orderDrinkMI" mnemonicParsing="false" text="Drink" />
+                   <MenuItem fx:id="orderFoodMI" mnemonicParsing="false" onAction="#openFoodMenu" text="Food" />
+                     <MenuItem fx:id="orderDrinkMI" mnemonicParsing="false" onAction="#openDrinksMenu" text="Drink" />
                      <SeparatorMenuItem fx:id="cafeSeperator" mnemonicParsing="false" />
-                     <MenuItem fx:id="settleTabMI" mnemonicParsing="false" text="Settle Tab" />
+                     <MenuItem fx:id="settleTabMI" mnemonicParsing="false" onAction="#settleTab" text="Settle Tab" />
                  </items>
                </Menu>
                </MenuBar>
@@ -74,7 +74,7 @@
                      </GridPane>
                   </children>
                </VBox>
-               <VBox fx:id="scoreBoardContainer" prefHeight="130.0" prefWidth="911.0" VBox.vgrow="ALWAYS">
+               <VBox fx:id="scoreBoardContainer" prefHeight="210.0" prefWidth="911.0" VBox.vgrow="ALWAYS">
                   <children>
                      <GridPane fx:id="gridPane" alignment="TOP_CENTER" minWidth="750.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="340.0" prefWidth="911.0">
                        <rowConstraints>
@@ -110,9 +110,9 @@
        </VBox>
    </top>
    <center>
-      <HBox fx:id="centerBox" alignment="BOTTOM_CENTER" prefHeight="68.0" prefWidth="911.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="centerBox" alignment="BOTTOM_CENTER" prefHeight="79.0" prefWidth="896.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="bowlBall" alignment="BOTTOM_CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#bowlBall" text="Bowl Ball" textAlignment="CENTER">
+            <Button fx:id="bowlBall" alignment="BOTTOM_CENTER" disable="true" graphicTextGap="5.0" mnemonicParsing="false" onAction="#bowlBall" text="Bowl Ball" textAlignment="CENTER">
                <font>
                   <Font name="Calibri Bold Italic" size="15.0" />
                </font>
