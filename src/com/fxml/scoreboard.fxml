@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="root" prefHeight="321.0" prefWidth="911.0" snapToPixel="false" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingsim.scorecard.ScoreBoard">
+<BorderPane fx:id="root" prefHeight="321.0" prefWidth="911.0" snapToPixel="false" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingsim.scorecard.ScoreBoardController">
    <top>
        <VBox fx:id="menuBox" BorderPane.alignment="CENTER">
            <HBox fx:id="topHbox" prefHeight="0.0" prefWidth="623.0">
@@ -15,7 +15,7 @@
                        <MenuItem fx:id="addPlayerMi" mnemonicParsing="false" onAction="#addRow" text="Add Player" />
                   <MenuItem fx:id="removePlayerMI" mnemonicParsing="false" text="Remove Player" />
                    </Menu>
-               <Menu fx:id="cafeMenu" mnemonicParsing="false" text="Cafe">
+               <Menu fx:id="cafeMenu" mnemonicParsing="false" onMenuValidation="#checkPlayers" text="Cafe">
                  <items>
                    <MenuItem fx:id="orderFoodMI" mnemonicParsing="false" onAction="#openFoodMenu" text="Food" />
                      <MenuItem fx:id="orderDrinkMI" mnemonicParsing="false" onAction="#openDrinksMenu" text="Drink" />

@@ -11,6 +11,7 @@ public class BowlingPlayer {
     private Boolean onStrike;
     private Boolean gameOver;
     private Integer strikeInRow;
+    private Double currentTab;
 
 
     public BowlingPlayer(String name) {
@@ -21,6 +22,7 @@ public class BowlingPlayer {
         this.onStrike = false;
         this.gameOver = false;
         this.strikeInRow = 0;
+        this.currentTab = 0.00;
 
 
     }
@@ -99,6 +101,14 @@ public class BowlingPlayer {
 
     public void setOnSpare(Boolean onSpare) {
         this.onSpare = onSpare;
+    }
+
+    public Double getCurrentTab() {
+        return currentTab;
+    }
+
+    public void setCurrentTab(Double currentTab) {
+        this.currentTab = currentTab;
     }
 }
 

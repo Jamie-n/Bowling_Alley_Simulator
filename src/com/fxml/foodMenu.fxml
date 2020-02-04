@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane prefHeight="308.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingsim.foodmenu.FoodMenuController">
-   <tabs>
-      <Tab closable="false" text="Starters" />
-      <Tab closable="false" text="Mains" />
-       <Tab closable="false" text="Deserts" />
-       <Tab closable="false" text="Kids Menu">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="276.0" prefWidth="295.0" />
-        </content>
-      </Tab>
-   </tabs>
-   <opaqueInsets>
-      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-   </opaqueInsets>
-</TabPane>
+<HBox prefHeight="443.0" prefWidth="514.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingsim.foodmenu.FoodMenuController">
+   <children>
+      <Accordion prefHeight="432.0" prefWidth="519.0">
+        <panes>
+          <TitledPane animated="false" text="Light Snacks">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="364.0" prefWidth="514.0">
+                           <children>
+                              <ListView fx:id="lightSnackList" nodeOrientation="LEFT_TO_RIGHT" prefHeight="434.0" prefWidth="514.0" VBox.vgrow="ALWAYS" />
+                              <Button fx:id="passValueBack" mnemonicParsing="false" onAction="#returnValue" text="Food" />
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" prefHeight="216.0" prefWidth="482.0" text="Main Meals">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="475.0" />
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Kids">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+   </children>
+</HBox>
