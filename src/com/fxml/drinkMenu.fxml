@@ -4,7 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.Image?>
+
+
 <TabPane prefHeight="308.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingsim.foodmenu.FoodMenuController">
+
    <tabs>
       <Tab closable="false" text="Soft Drinks" />
       <Tab closable="false" text="Wines" />

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -43,11 +44,12 @@ public class ScoreBoardController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxml/foodMenu.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage = new Stage();
+                stage.getIcons().add(new Image("/com/bowlingsim/res/bowlingIcon.png"));
+                stage.setTitle("Order Food");
                 stage.setScene(new Scene(root1));
                 stage.initModality(Modality.APPLICATION_MODAL);
                 FoodMenuController controller = fxmlLoader.getController();
-                controller.generateList();
-                controller.passArrayList(alley.playerList);
+                controller.onStart(alley.playerList, stage);
                 stage.show();
 
             } catch (Exception e) {
@@ -57,12 +59,6 @@ public class ScoreBoardController {
         }
 
 
-    public void addItem(){
-
-
-
-    }
-
 
     public void openDrinksMenu(ActionEvent actionEvent) {
         try {
@@ -70,6 +66,8 @@ public class ScoreBoardController {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
+            stage.getIcons().add(new Image("/com/bowlingsim/res/bowlingIcon.png"));
+            stage.setTitle("Order Drink");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
 
@@ -84,6 +82,8 @@ public class ScoreBoardController {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
+            stage.getIcons().add(new Image("/com/bowlingsim/res/bowlingIcon.png"));
+            stage.setTitle("Settle Tab");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
 
@@ -98,7 +98,7 @@ public class ScoreBoardController {
             Alert noPlayers = new Alert(Alert.AlertType.WARNING);
             noPlayers.setTitle("Zero Players");
             noPlayers.setContentText("To open a tab create a player");
-            noPlayers.setHeaderText("You cannot order food or drinks without a tab.");
+            noPlayers.setHeaderText("You cannot order Food or drinks without a tab.");
             noPlayers.showAndWait();
 
             orderFoodMI.setVisible(false);

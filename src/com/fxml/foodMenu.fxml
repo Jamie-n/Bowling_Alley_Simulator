@@ -1,36 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<HBox prefHeight="443.0" prefWidth="514.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingsim.foodmenu.FoodMenuController">
+<VBox prefHeight="628.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingsim.foodmenu.FoodMenuController">
    <children>
-      <Accordion prefHeight="432.0" prefWidth="519.0">
-        <panes>
-          <TitledPane animated="false" text="Light Snacks">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="364.0" prefWidth="514.0">
+      <HBox prefHeight="154.0" prefWidth="596.0">
+         <children>
+            <Accordion prefHeight="299.0" prefWidth="596.0">
+              <panes>
+                <TitledPane fx:id="foodPane" animated="false" onMouseClicked="#foodMenuFocus" prefHeight="375.0" prefWidth="569.0" text="Food">
+                     <content>
+                        <VBox>
                            <children>
-                              <ListView fx:id="lightSnackList" nodeOrientation="LEFT_TO_RIGHT" prefHeight="434.0" prefWidth="514.0" VBox.vgrow="ALWAYS" />
-                              <Button fx:id="passValueBack" mnemonicParsing="false" onAction="#returnValue" text="Food" />
+                              <VBox prefHeight="100.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Choose Food">
+                                       <font>
+                                          <Font name="System Bold Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children></VBox>
+                              <VBox prefHeight="300.0" prefWidth="492.0">
+                                 <children>
+                                    <HBox prefHeight="12.0" prefWidth="492.0">
+                                       <children>
+                                          <ComboBox fx:id="foodComboBox" onAction="#selectionMade" prefHeight="25.0" prefWidth="618.0" />
+                                       </children>
+                                    </HBox>
+                                    <VBox prefHeight="0.0" prefWidth="492.0" />
+                                 </children>
+                              </VBox>
+                              <HBox alignment="CENTER" prefHeight="492.0" prefWidth="492.0" />
+                              <HBox layoutX="20.0" layoutY="20.0" prefHeight="32.0" prefWidth="518.0">
+                                 <opaqueInsets>
+                                    <Insets right="20.0" top="30.0" />
+                                 </opaqueInsets>
+                              </HBox>
                            </children>
                         </VBox>
-                     </children></AnchorPane>
-            </content>
-          </TitledPane>
-          <TitledPane animated="false" prefHeight="216.0" prefWidth="482.0" text="Main Meals">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="475.0" />
-            </content>
-          </TitledPane>
-          <TitledPane animated="false" text="Kids">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </TitledPane>
-        </panes>
-      </Accordion>
+                     </content>
+                </TitledPane>
+                  <TitledPane fx:id="foodPane1" animated="false" layoutX="10.0" layoutY="10.0" onMouseClicked="#drinkTabFocus" prefHeight="38.0" prefWidth="596.0" text="Drinks">
+                     <content>
+                        <VBox>
+                           <children>
+                              <VBox prefHeight="100.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Choose Drink">
+                                       <font>
+                                          <Font name="System Bold Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="300.0" prefWidth="492.0">
+                                 <children>
+                                    <HBox prefHeight="12.0" prefWidth="492.0">
+                                       <children>
+                                          <ComboBox fx:id="drinkComboBox" onAction="#selectionMade" prefHeight="25.0" prefWidth="600.0" />
+                                       </children>
+                                    </HBox>
+                                    <VBox prefHeight="0.0" prefWidth="492.0" />
+                                 </children>
+                              </VBox>
+                              <HBox alignment="CENTER" prefHeight="227.0" prefWidth="502.0" />
+                           </children>
+                        </VBox>
+                     </content>
+                  </TitledPane>
+              </panes>
+            </Accordion>
+         </children>
+      </HBox>
+      <VBox prefHeight="477.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="478.0" prefWidth="600.0">
+               <children>
+                  <ListView fx:id="basketListView" prefHeight="379.0" prefWidth="600.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="231.0" prefWidth="600.0">
+               <children>
+                  <GridPane prefHeight="71.0" prefWidth="596.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="addItemButton" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#addToOrder" prefHeight="30.0" prefWidth="310.0" text="Add Item" />
+                        <Label fx:id="basketTotal" alignment="CENTER" prefHeight="17.0" prefWidth="323.0" text="Total" GridPane.columnIndex="1">
+                           <opaqueInsets>
+                              <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="orderFoodBtn" disable="true" mnemonicParsing="false" onAction="#makeOrder" prefHeight="30.0" prefWidth="319.0" text="Order Food" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="playerNameComboBox" onAction="#allowOrderFood" prefHeight="30.0" prefWidth="310.0" promptText="Select Player" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
    </children>
-</HBox>
+</VBox>

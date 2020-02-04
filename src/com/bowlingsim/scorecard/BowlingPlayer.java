@@ -1,5 +1,7 @@
 package com.bowlingsim.scorecard;
 
+import com.bowlingsim.foodmenu.CafeItem;
+
 import java.util.ArrayList;
 
 public class BowlingPlayer {
@@ -29,6 +31,7 @@ public class BowlingPlayer {
 
     public ArrayList<Integer> throw1Array = new ArrayList<>();
     public ArrayList<Integer> throw2Array = new ArrayList<>();
+    public ArrayList<CafeItem> itemsConsumed = new ArrayList<>();
 
     public Integer getStrikeInRow() {
         return strikeInRow;
@@ -110,6 +113,7 @@ public class BowlingPlayer {
     public void setCurrentTab(Double currentTab) {
         this.currentTab = currentTab;
     }
+
 }
 
 
