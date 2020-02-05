@@ -28,14 +28,15 @@ public class ScoreBoard extends Application {
 
 
 
+
         Parent root = FXMLLoader.load(getClass().getResource("../../fxml/scoreboard.fxml"));
         scene = new Scene(root, 750, 310);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Bowling Score Card");
         primaryStage.getIcons().add(new Image("/com/bowlingsim/res/bowlingIcon.png"));
+        window = primaryStage;
 
-
-        primaryStage.show();
+        window.show();
 
 
 

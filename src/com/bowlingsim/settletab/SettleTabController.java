@@ -64,7 +64,6 @@ public class SettleTabController {
     public void settleTabCard(ActionEvent actionEvent) {
         if (currentlySelected.getCurrentTab() > 0) {
             currentlySelected.setCurrentTab(0.00);
-            System.out.println("Tab Settled");
             updateTotal();
             playCashSound();
         }

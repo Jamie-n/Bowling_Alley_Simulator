@@ -1,5 +1,6 @@
 package com.bowlingsim.foodmenu;
 
+import com.bowlingsim.msgbox.MsgBox;
 import com.bowlingsim.scorecard.BowlingPlayer;
 import com.bowlingsim.scorecard.ScoreBoardController;
 import javafx.collections.ObservableList;
@@ -37,8 +38,6 @@ public class FoodMenuController {
     private Boolean foodTabFocus;
     private Boolean drinkTabFocus;
 
-
-    ScoreBoardController parentController = new ScoreBoardController();
 
     ArrayList<BowlingPlayer> playerList;
     ArrayList<CafeItem> foodShoppingBasket = new ArrayList<>();
@@ -99,22 +98,13 @@ public class FoodMenuController {
                 if (player.getName().equals(playerNameComboBox.getValue())) {
                     player.setCurrentTab(player.getCurrentTab() + shoppingBasketTotal);
                     player.itemsConsumed.addAll(foodShoppingBasket);
-                    Alert noSelection = new Alert(Alert.AlertType.CONFIRMATION);
-                    noSelection.setTitle("Order Placed");
-                    noSelection.setContentText("The sub total for your order " + cf.format(shoppingBasketTotal) + " has been placed on " + player.getName() + "'s tab.");
-                    noSelection.setHeaderText("Thank you for the order");
-                    Toolkit.getDefaultToolkit().beep();
-                    noSelection.showAndWait();
+                    new MsgBox().showInfoBox("Order Placed","Thank you for the order","The sub total for your order " + cf.format(shoppingBasketTotal) + " has been placed on " + player.getName() + "'s tab.", Alert.AlertType.CONFIRMATION);
+
                     root.close();
                 }
             }
         }else{
-            Alert noSelection = new Alert(Alert.AlertType.ERROR);
-            noSelection.setTitle("No Items Ordered");
-            noSelection.setContentText("Please select some items before placing your order!");
-            noSelection.setHeaderText("Empty Selection");
-            Toolkit.getDefaultToolkit().beep();
-            noSelection.showAndWait();
+            new MsgBox().showInfoBox("No Items Ordered","Empty Selection","Please select some items", Alert.AlertType.ERROR);
         }
     }
 

@@ -12,7 +12,7 @@
            <HBox fx:id="topHbox" prefHeight="0.0" prefWidth="623.0">
                <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="963.0">
                    <Menu fx:id="addPlayerMenu" mnemonicParsing="false" text="Add Player">
-                       <MenuItem fx:id="addPlayerMi" mnemonicParsing="false" onAction="#addRow" text="Add Player" />
+                       <MenuItem fx:id="addPlayerMi" mnemonicParsing="false" onAction="#addPlayer" text="Add Player" />
                   <MenuItem fx:id="removePlayerMI" mnemonicParsing="false" text="Remove Player" />
                    </Menu>
                <Menu fx:id="cafeMenu" mnemonicParsing="false" onMenuValidation="#checkPlayers" text="Cafe">

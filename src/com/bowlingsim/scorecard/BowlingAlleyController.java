@@ -2,6 +2,7 @@ package com.bowlingsim.scorecard;
 
 
 
+import com.bowlingsim.msgbox.MsgBox;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -39,8 +40,6 @@ public class BowlingAlleyController {
             System.out.println(currentPlayer);
             if(currentPlayer == 0){
                 getWinner(this.playerList);
-
-
             }
 
         } else {
@@ -53,7 +52,6 @@ public class BowlingAlleyController {
 
                 currentPlayer += 1;
                 currentRound += 1;
-
 
             }
             if (gridPane.getRowCount() == currentPlayer) {
@@ -74,27 +72,24 @@ public class BowlingAlleyController {
                 name = player.getName();
             }
         }
-        Alert winnerAlert = new Alert(Alert.AlertType.INFORMATION);
-        winnerAlert.setTitle("Game Over");
-        winnerAlert.setContentText("Player " +name+ " has won the game with " +highScore+" points!");
-        winnerAlert.setHeaderText("Game Over");
-        winnerAlert.showAndWait();
+        new MsgBox().showInfoBox("Game Over","Game Over","Player " +name+ " has won the game with " +highScore+" points!", Alert.AlertType.INFORMATION);
     }
 
 
 
-    public void addRows(GridPane gridPane) {
+    public void addRows(GridPane gridPane,String playerName) {
         Integer numberOfPlayers = playerList.size();
         if (numberOfPlayers != 8 + 1) {
-            gridPane.add(new Label("Player " + numberOfPlayers), 0, numberOfPlayers);
+            gridPane.add(new Label(playerName), 0, numberOfPlayers);
             gridPane.add(new Label("0"), 13, numberOfPlayers);
 
             for (int i = 0; i < 11 + 1; i++) {
                 gridPane.add(new Label(" "), i, numberOfPlayers);
 
             }
-            this.addPlayer(numberOfPlayers.toString());
+            this.addPlayer(playerName);
         }else{
+            new MsgBox().showInfoBox("Too Many Players","Too Many Players","Can only have a maximum of 8 players", Alert.AlertType.WARNING);
             Alert tooManyPlayers = new Alert(Alert.AlertType.WARNING);
             tooManyPlayers.setTitle("Too Many Players");
             tooManyPlayers.setContentText("Can only have a maximum of 8 players on one lane");
