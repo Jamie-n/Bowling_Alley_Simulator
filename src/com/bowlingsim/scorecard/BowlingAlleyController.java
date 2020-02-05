@@ -90,11 +90,6 @@ public class BowlingAlleyController {
             this.addPlayer(playerName);
         }else{
             new MsgBox().showInfoBox("Too Many Players","Too Many Players","Can only have a maximum of 8 players", Alert.AlertType.WARNING);
-            Alert tooManyPlayers = new Alert(Alert.AlertType.WARNING);
-            tooManyPlayers.setTitle("Too Many Players");
-            tooManyPlayers.setContentText("Can only have a maximum of 8 players on one lane");
-            tooManyPlayers.setHeaderText("Too Many Players");
-            tooManyPlayers.showAndWait();
         }
 
     }
@@ -236,7 +231,7 @@ public class BowlingAlleyController {
 
             ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
             for (Node node : children) {
-                if (node instanceof Label && gridPane.getRowIndex(node) == currentPlayer && gridPane.getColumnIndex(node) == 13) {
+                if (node instanceof Label && GridPane.getRowIndex(node) == currentPlayer && GridPane.getColumnIndex(node) == 13) {
                     ((Label) node).setText(String.valueOf(this.getScore(currentPlayer)));
                 }
             }

@@ -2,7 +2,6 @@ package com.bowlingsim.foodmenu;
 
 import com.bowlingsim.msgbox.MsgBox;
 import com.bowlingsim.scorecard.BowlingPlayer;
-import com.bowlingsim.scorecard.ScoreBoardController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -13,8 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.text.DecimalFormat;
+
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -47,6 +45,7 @@ public class FoodMenuController {
         root = stage;
         GenerateMenuItems.createFoodItems();
         playerList = tempList;
+        foodTabFocus = true;
 
         for (BowlingPlayer bowlingPlayer : playerList) {
             playerNameComboBox.getItems().add(bowlingPlayer.getName());

@@ -11,18 +11,27 @@
        <VBox fx:id="menuBox" BorderPane.alignment="CENTER">
            <HBox fx:id="topHbox" prefHeight="0.0" prefWidth="623.0">
                <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="963.0">
-                   <Menu fx:id="addPlayerMenu" mnemonicParsing="false" text="Add Player">
+                   <Menu fx:id="addPlayerMenu" mnemonicParsing="false" text="Player">
                        <MenuItem fx:id="addPlayerMi" mnemonicParsing="false" onAction="#addPlayer" text="Add Player" />
                   <MenuItem fx:id="removePlayerMI" mnemonicParsing="false" text="Remove Player" />
                    </Menu>
                <Menu fx:id="cafeMenu" mnemonicParsing="false" onMenuValidation="#checkPlayers" text="Cafe">
                  <items>
                    <MenuItem fx:id="orderFoodMI" mnemonicParsing="false" onAction="#openFoodMenu" text="Food" />
-                     <MenuItem fx:id="orderDrinkMI" mnemonicParsing="false" text="Drink" />
                      <SeparatorMenuItem fx:id="cafeSeperator" mnemonicParsing="false" />
                      <MenuItem fx:id="settleTabMI" mnemonicParsing="false" onAction="#settleTab" text="Settle Tab" />
                  </items>
                </Menu>
+               <Menu mnemonicParsing="false" text="Help">
+                 <items>
+                   <MenuItem mnemonicParsing="false" onAction="#help" text="Help" />
+                     <MenuItem mnemonicParsing="false" onAction="#versionDisplay" text="Version" />
+                     <MenuItem mnemonicParsing="false" onAction="#exitApp" text="Exit" />
+                 </items>
+               </Menu>
+               <opaqueInsets>
+                  <Insets left="30.0" right="30.0" />
+               </opaqueInsets>
                </MenuBar>
            </HBox>
          <VBox fx:id="scoreBoardVbox">

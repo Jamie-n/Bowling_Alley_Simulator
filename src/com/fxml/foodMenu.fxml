@@ -11,7 +11,7 @@
    <children>
       <HBox prefHeight="154.0" prefWidth="596.0">
          <children>
-            <Accordion prefHeight="299.0" prefWidth="596.0">
+            <Accordion prefHeight="299.0" prefWidth="596.0" expandedPane="$foodPane">
               <panes>
                 <TitledPane fx:id="foodPane" animated="false" onMouseClicked="#foodMenuFocus" prefHeight="375.0" prefWidth="569.0" text="Food">
                      <content>

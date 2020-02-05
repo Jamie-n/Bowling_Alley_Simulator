@@ -3,22 +3,22 @@ package com.bowlingsim.scorecard;
 import com.bowlingsim.foodmenu.FoodMenuController;
 import com.bowlingsim.msgbox.MsgBox;
 import com.bowlingsim.settletab.SettleTabController;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.awt.*;
+
 import java.io.IOException;
+import java.net.URL;
 
 public class ScoreBoardController {
 
@@ -26,7 +26,6 @@ public class ScoreBoardController {
     public GridPane gridPane;
     public Button bowlBall;
     public MenuItem orderFoodMI;
-    public MenuItem orderDrinkMI;
     public MenuItem addPlayerMi;
     private BowlingAlleyController alley = new BowlingAlleyController();
 
@@ -84,10 +83,9 @@ public class ScoreBoardController {
         if (alley.playerList.size() == 0) {
             new MsgBox().showInfoBox("Zero Players","You cannot order food or drinks without a tab","To open a tab add a player", Alert.AlertType.WARNING);
             orderFoodMI.setVisible(false);
-            orderDrinkMI.setVisible(false);
+
 
         } else {
-            orderDrinkMI.setVisible(true);
             orderFoodMI.setVisible(true);
         }
     }
@@ -104,5 +102,17 @@ public class ScoreBoardController {
         } else {
             addRow(playerAdd.getEditor().getText());
         }
+    }
+
+    public void help(ActionEvent actionEvent) {
+        new MsgBox().showInfoBox("Help","Start a game by adding players.","For more info see: https://en.wikipedia.org/wiki/Ten-pin_bowling", Alert.AlertType.INFORMATION );
+    }
+
+    public void versionDisplay(ActionEvent actionEvent) {
+        new MsgBox().showInfoBox("Version","V0.6.3","For Full Github listing see: https://github.com/Jamie-n/Bowling_Alley_Simulator", Alert.AlertType.INFORMATION );
+    }
+
+    public void exitApp(ActionEvent actionEvent) {
+        Platform.exit();
     }
 }
