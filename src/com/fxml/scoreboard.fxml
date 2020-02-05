@@ -18,7 +18,7 @@
                <Menu fx:id="cafeMenu" mnemonicParsing="false" onMenuValidation="#checkPlayers" text="Cafe">
                  <items>
                    <MenuItem fx:id="orderFoodMI" mnemonicParsing="false" onAction="#openFoodMenu" text="Food" />
-                     <MenuItem fx:id="orderDrinkMI" mnemonicParsing="false" onAction="#openDrinksMenu" text="Drink" />
+                     <MenuItem fx:id="orderDrinkMI" mnemonicParsing="false" text="Drink" />
                      <SeparatorMenuItem fx:id="cafeSeperator" mnemonicParsing="false" />
                      <MenuItem fx:id="settleTabMI" mnemonicParsing="false" onAction="#settleTab" text="Settle Tab" />
                  </items>

@@ -2,6 +2,7 @@ package com.bowlingsim.foodmenu;
 
 import com.bowlingsim.scorecard.BowlingPlayer;
 import com.bowlingsim.scorecard.ScoreBoardController;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -13,7 +14,9 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class FoodMenuController {
 
@@ -25,9 +28,10 @@ public class FoodMenuController {
     public Button addItemButton;
     public Button orderFoodBtn;
     public ComboBox<String> drinkComboBox;
+    public Button removeItemBtn;
 
-    Double shoppingBasketTotal = 0.00;
-    private static DecimalFormat formatter = new DecimalFormat("0.00");
+    Double shoppingBasketTotal;
+    NumberFormat cf = NumberFormat.getCurrencyInstance(new Locale("en","GB"));
     private Stage root;
 
     private Boolean foodTabFocus;
@@ -55,43 +59,62 @@ public class FoodMenuController {
             }
         }
         for (int i = 0; i < GenerateMenuItems.cafeItemList.size(); i++) {
-            if(GenerateMenuItems.cafeItemList.get(i).getTypeOfItem().equals("drink"))
-            drinkComboBox.getItems().add(GenerateMenuItems.cafeItemList.get(i).getNameOfItem());
+            if (GenerateMenuItems.cafeItemList.get(i).getTypeOfItem().equals("drink"))
+                drinkComboBox.getItems().add(GenerateMenuItems.cafeItemList.get(i).getNameOfItem());
         }
     }
 
     public void addToOrder(ActionEvent actionEvent) {
         Boolean selection = true;
-        if(foodTabFocus){
-            C
+        for (CafeItem item : GenerateMenuItems.cafeItemList) {
+            if (foodTabFocus) {
+                if (item.getNameOfItem().equals(foodComboBox.getValue())) {
+                    foodShoppingBasket.add(item);
+                    break;
+                }
+            } else if (drinkTabFocus) {
+                if (drinkComboBox.getValue().equals(item.getNameOfItem())) {
+                    foodShoppingBasket.add(item);
+                    break;
+                }
+            }
         }
-
-
+        updateShoppingBasket();
     }
+
+
+
 
     public void selectionMade(ActionEvent actionEvent) {
         addItemButton.setDisable(false);
     }
 
     public void allowOrderFood(ActionEvent actionEvent) {
-        orderFoodBtn.setDisable(false);
+            orderFoodBtn.setDisable(false);
     }
 
     public void makeOrder(ActionEvent actionEvent) {
-        if (shoppingBasketTotal > 0) {
+        if (foodShoppingBasket.size() > 0) {
             for (BowlingPlayer player : playerList) {
                 if (player.getName().equals(playerNameComboBox.getValue())) {
                     player.setCurrentTab(player.getCurrentTab() + shoppingBasketTotal);
                     player.itemsConsumed.addAll(foodShoppingBasket);
                     Alert noSelection = new Alert(Alert.AlertType.CONFIRMATION);
                     noSelection.setTitle("Order Placed");
-                    noSelection.setContentText("The sub total for your order £" + formatter.format(shoppingBasketTotal) + " has been placed on " + player.getName() + "'s tab.");
+                    noSelection.setContentText("The sub total for your order " + cf.format(shoppingBasketTotal) + " has been placed on " + player.getName() + "'s tab.");
                     noSelection.setHeaderText("Thank you for the order");
                     Toolkit.getDefaultToolkit().beep();
                     noSelection.showAndWait();
                     root.close();
                 }
             }
+        }else{
+            Alert noSelection = new Alert(Alert.AlertType.ERROR);
+            noSelection.setTitle("No Items Ordered");
+            noSelection.setContentText("Please select some items before placing your order!");
+            noSelection.setHeaderText("Empty Selection");
+            Toolkit.getDefaultToolkit().beep();
+            noSelection.showAndWait();
         }
     }
 
@@ -104,4 +127,36 @@ public class FoodMenuController {
         foodTabFocus = false;
         drinkTabFocus = true;
     }
+
+    public void removeFromOrder(ActionEvent actionEvent) {
+       ObservableList<Label> tempList;
+        tempList = basketListView.getItems();
+
+        for(Label item : tempList){
+            if(item.getText().equals(foodShoppingBasket.get(foodShoppingBasket.size()-1).getNameOfItem())){
+                foodShoppingBasket.remove(foodShoppingBasket.size()-1);
+                updateShoppingBasket();
+                break;
+            }
+        }
+    }
+
+
+    public void updateShoppingBasket(){
+        basketListView.getItems().clear();
+        shoppingBasketTotal = 0.00;
+        if(foodShoppingBasket.size() == 0){
+            removeItemBtn.setDisable(true);
+        }else {
+            removeItemBtn.setDisable(false);
+        }
+
+        for(CafeItem foodItem : foodShoppingBasket){
+            basketListView.getItems().add(new Label(foodItem.getNameOfItem()));
+            shoppingBasketTotal += foodItem.getPriceOfItem();
+        }
+        basketTotal.setText("Total " + cf.format(shoppingBasketTotal));
+    }
+
 }
+

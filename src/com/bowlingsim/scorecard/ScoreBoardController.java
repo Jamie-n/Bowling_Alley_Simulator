@@ -1,6 +1,7 @@
 package com.bowlingsim.scorecard;
 
 import com.bowlingsim.foodmenu.FoodMenuController;
+import com.bowlingsim.settletab.SettleTabController;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -58,24 +59,6 @@ public class ScoreBoardController {
 
         }
 
-
-
-    public void openDrinksMenu(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxml/drinkMenu.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.getIcons().add(new Image("/com/bowlingsim/res/bowlingIcon.png"));
-            stage.setTitle("Order Drink");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void settleTab(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxml/settleTab.fxml"));
@@ -85,6 +68,8 @@ public class ScoreBoardController {
             stage.getIcons().add(new Image("/com/bowlingsim/res/bowlingIcon.png"));
             stage.setTitle("Settle Tab");
             stage.initModality(Modality.APPLICATION_MODAL);
+            SettleTabController controller = fxmlLoader.getController();
+            controller.onStart(alley.playerList);
             stage.show();
 
         } catch (Exception e) {
