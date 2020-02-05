@@ -26,22 +26,13 @@ public class ScoreBoard extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-
-
-
         Parent root = FXMLLoader.load(getClass().getResource("../../fxml/scoreboard.fxml"));
         scene = new Scene(root, 750, 310);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Bowling Score Card");
         primaryStage.getIcons().add(new Image("/com/bowlingsim/res/bowlingIcon.png"));
         window = primaryStage;
-
         window.show();
-
-
-
-
-
     }
 
 }

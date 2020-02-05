@@ -6,10 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.media.AudioClip;
-
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
+
 
 public class SettleTabController {
 

@@ -12,13 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-
 import java.io.IOException;
-import java.net.URL;
+
 
 public class ScoreBoardController {
 
@@ -28,6 +25,7 @@ public class ScoreBoardController {
     public MenuItem orderFoodMI;
     public MenuItem addPlayerMi;
     private BowlingAlleyController alley = new BowlingAlleyController();
+    final Image APP_ICON = new Image("/com/bowlingsim/res/bowlingIcon.png");
 
 
     public void addRow(String playerName) {
@@ -46,7 +44,7 @@ public class ScoreBoardController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxml/foodMenu.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
-            stage.getIcons().add(new Image("/com/bowlingsim/res/bowlingIcon.png"));
+            stage.getIcons().add(APP_ICON);
             stage.setTitle("Order Food");
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -66,7 +64,7 @@ public class ScoreBoardController {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
-            stage.getIcons().add(new Image("/com/bowlingsim/res/bowlingIcon.png"));
+            stage.getIcons().add(APP_ICON);
             stage.setTitle("Settle Tab");
             stage.initModality(Modality.APPLICATION_MODAL);
             SettleTabController controller = fxmlLoader.getController();
@@ -93,6 +91,8 @@ public class ScoreBoardController {
     public void addPlayer(ActionEvent actionEvent) {
         TextInputDialog playerAdd = new TextInputDialog("Enter Player Name");
         playerAdd.setHeaderText("");
+        Stage playerAddBox = (Stage) playerAdd.getDialogPane().getScene().getWindow();
+        playerAddBox.getIcons().add(APP_ICON);
         playerAdd.setTitle("Add Player");
         playerAdd.showAndWait();
 
@@ -109,7 +109,7 @@ public class ScoreBoardController {
     }
 
     public void versionDisplay(ActionEvent actionEvent) {
-        new MsgBox().showInfoBox("Version","V0.6.3","For Full Github listing see: https://github.com/Jamie-n/Bowling_Alley_Simulator", Alert.AlertType.INFORMATION );
+        new MsgBox().showInfoBox("Version","V0.8.9","For Full Github listing see: https://github.com/Jamie-n/Bowling_Alley_Simulator", Alert.AlertType.INFORMATION );
     }
 
     public void exitApp(ActionEvent actionEvent) {

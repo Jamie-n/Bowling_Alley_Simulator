@@ -20,7 +20,7 @@ public class MsgBox {
 
     public void addIcon(Alert msg){
         final Image APP_ICON = new Image("/com/bowlingsim/res/bowlingIcon.png");
-        Stage InfoStage = (Stage) msg.getDialogPane().getScene().getWindow();
-        InfoStage.getIcons().add(APP_ICON);
+        Stage infoStage = (Stage) msg.getDialogPane().getScene().getWindow();
+        infoStage.getIcons().add(APP_ICON);
     }
 }
