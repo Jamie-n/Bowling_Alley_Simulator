@@ -19,8 +19,6 @@ public class BowlingAlleyController {
     public int currentPlayer;
     private int currentRound;
 
-
-
     BowlingBall ball = new BowlingBall();
 
     public void addPlayer(String name) {
