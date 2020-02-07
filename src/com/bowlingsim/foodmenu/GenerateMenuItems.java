@@ -22,17 +22,8 @@ public class GenerateMenuItems {
             }
             for(String drinks : drinkItems){
                 String[] splitItem = drinks.split(",");
-                cafeItemList.add(new CafeItem(splitItem[0],Double.parseDouble(splitItem[1]),"drink"));
+                cafeItemList.add(new CafeItem(splitItem[0],Double.parseDouble(splitItem[1]),Boolean.parseBoolean(splitItem[2]),"drink"));
             }
         }
-
-
-
-
-
-
-
-
-
     }
 }

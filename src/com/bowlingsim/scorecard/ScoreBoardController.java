@@ -4,17 +4,17 @@ import com.bowlingsim.foodmenu.FoodMenuController;
 import com.bowlingsim.msgbox.MsgBox;
 import com.bowlingsim.settletab.SettleTabController;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 
 public class ScoreBoardController {
@@ -34,15 +34,15 @@ public class ScoreBoardController {
         bowlBall.setDisable(false);
     }
 
-    public void bowlBall(ActionEvent actionEvent) throws IOException {
+    public void bowlBall() {
         alley.updateScore(gridPane);
     }
 
 
-    public void openFoodMenu(ActionEvent actionEvent) throws IOException {
+    public void openFoodMenu() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxml/foodMenu.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
+            Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.getIcons().add(APP_ICON);
             stage.setTitle("Order Food");
@@ -58,10 +58,10 @@ public class ScoreBoardController {
 
     }
 
-    public void settleTab(ActionEvent actionEvent) {
+    public void settleTab() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxml/settleTab.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
+            Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.getIcons().add(APP_ICON);
@@ -77,9 +77,9 @@ public class ScoreBoardController {
     }
 
 
-    public void checkPlayers(Event event) {
+    public void checkPlayers() {
         if (alley.playerList.size() == 0) {
-            new MsgBox().showInfoBox("Zero Players","You cannot order food or drinks without a tab","To open a tab add a player", Alert.AlertType.WARNING);
+            new MsgBox().showInfoBox("Zero Players", "You cannot order food or drinks without a tab", "To open a tab add a player", Alert.AlertType.WARNING);
             orderFoodMI.setVisible(false);
 
 
@@ -88,31 +88,32 @@ public class ScoreBoardController {
         }
     }
 
-    public void addPlayer(ActionEvent actionEvent) {
+    public void addPlayer() {
         TextInputDialog playerAdd = new TextInputDialog("Enter Player Name");
         playerAdd.setHeaderText("");
         Stage playerAddBox = (Stage) playerAdd.getDialogPane().getScene().getWindow();
         playerAddBox.getIcons().add(APP_ICON);
         playerAdd.setTitle("Add Player");
         playerAdd.showAndWait();
+        String userName = playerAdd.getEditor().getText();
 
-        if (playerAdd.getEditor().getText().equals("Enter Player Name")) {
-            new MsgBox().showInfoBox("No Name","Please Add Player","You must add the name of a player", Alert.AlertType.ERROR);
+        if (userName.equals("Enter Player Name") || userName.length() == 0) {
+            new MsgBox().showInfoBox("No Name", "Please Add Player", "You must add the name of a player", Alert.AlertType.ERROR);
 
         } else {
-            addRow(playerAdd.getEditor().getText());
+            addRow(userName);
         }
     }
 
-    public void help(ActionEvent actionEvent) {
-        new MsgBox().showInfoBox("Help","Start a game by adding players.","For more info see: https://en.wikipedia.org/wiki/Ten-pin_bowling", Alert.AlertType.INFORMATION );
+    public void help() {
+        new MsgBox().showInfoBox("Help", "Start a game by adding players.", "For more info see: https://en.wikipedia.org/wiki/Ten-pin_bowling", Alert.AlertType.INFORMATION);
     }
 
-    public void versionDisplay(ActionEvent actionEvent) {
-        new MsgBox().showInfoBox("Version","V0.8.9","For Full Github listing see: https://github.com/Jamie-n/Bowling_Alley_Simulator", Alert.AlertType.INFORMATION );
+    public void versionDisplay() {
+        new MsgBox().showInfoBox("Version", "V0.8.9", "For Full Github listing see: https://github.com/Jamie-n/Bowling_Alley_Simulator", Alert.AlertType.INFORMATION);
     }
 
-    public void exitApp(ActionEvent actionEvent) {
+    public void exitApp() {
         Platform.exit();
     }
 }

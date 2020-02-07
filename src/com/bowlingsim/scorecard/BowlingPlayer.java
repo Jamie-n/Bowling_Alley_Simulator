@@ -114,6 +114,10 @@ public class BowlingPlayer {
         this.currentTab = currentTab;
     }
 
+    public void updateScore(Integer score) {
+        this.setTotalScore(this.getTotalScore() + score);
+    }
+
 }
 
 

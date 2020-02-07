@@ -3,15 +3,8 @@ package com.bowlingsim.foodmenu;
 import com.bowlingsim.msgbox.MsgBox;
 import com.bowlingsim.scorecard.BowlingPlayer;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -62,8 +55,7 @@ public class FoodMenuController {
         }
     }
 
-    public void addToOrder(ActionEvent actionEvent) {
-        Boolean selection = true;
+    public void addToOrder() {
         for (CafeItem item : GenerateMenuItems.cafeItemList) {
             if (foodTabFocus) {
                 if (item.getNameOfItem().equals(foodComboBox.getValue())) {
@@ -83,15 +75,15 @@ public class FoodMenuController {
 
 
 
-    public void selectionMade(ActionEvent actionEvent) {
+    public void selectionMade() {
         addItemButton.setDisable(false);
     }
 
-    public void allowOrderFood(ActionEvent actionEvent) {
+    public void allowOrderFood() {
             orderFoodBtn.setDisable(false);
     }
 
-    public void makeOrder(ActionEvent actionEvent) {
+    public void makeOrder() {
         if (foodShoppingBasket.size() > 0) {
             for (BowlingPlayer player : playerList) {
                 if (player.getName().equals(playerNameComboBox.getValue())) {
@@ -107,17 +99,17 @@ public class FoodMenuController {
         }
     }
 
-    public void foodMenuFocus(MouseEvent mouseEvent) {
+    public void foodMenuFocus() {
         foodTabFocus = true;
         drinkTabFocus = false;
     }
 
-    public void drinkTabFocus(MouseEvent mouseEvent) {
+    public void drinkTabFocus() {
         foodTabFocus = false;
         drinkTabFocus = true;
     }
 
-    public void removeFromOrder(ActionEvent actionEvent) {
+    public void removeFromOrder() {
        ObservableList<Label> tempList;
         tempList = basketListView.getItems();
 

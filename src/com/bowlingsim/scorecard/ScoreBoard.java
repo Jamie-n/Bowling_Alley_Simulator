@@ -11,18 +11,12 @@ import javafx.stage.Stage;
 
 public class ScoreBoard extends Application {
 
-
-
     public Scene scene;
     public Stage window;
-
 
     public static void main(String[] args) {
         launch(args);
     }
-
-
-
 
 
     @Override

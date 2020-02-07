@@ -13,7 +13,7 @@ import java.util.Locale;
 
 public class SettleTabController {
 
-    public ComboBox tabSelectComboBox;
+    public  ComboBox tabSelectComboBox;
     public Label tabTotalLbl;
     public Button cardBtn;
     public Button cashBtn;
