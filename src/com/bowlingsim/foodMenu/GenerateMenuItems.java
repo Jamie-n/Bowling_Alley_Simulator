@@ -1,4 +1,4 @@
-package com.bowlingsim.foodmenu;
+package com.bowlingsim.foodMenu;
 
 import java.util.ArrayList;
 

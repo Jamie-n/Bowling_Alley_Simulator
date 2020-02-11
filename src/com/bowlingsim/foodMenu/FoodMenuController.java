@@ -1,7 +1,7 @@
-package com.bowlingsim.foodmenu;
+package com.bowlingsim.foodMenu;
 
-import com.bowlingsim.msgbox.MsgBox;
-import com.bowlingsim.scorecard.BowlingPlayer;
+import com.bowlingsim.msgBox.MsgBox;
+import com.bowlingsim.scoreCard.BowlingPlayer;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.stage.Stage;

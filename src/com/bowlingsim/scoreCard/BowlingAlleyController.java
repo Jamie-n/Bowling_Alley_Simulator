@@ -1,7 +1,7 @@
-package com.bowlingsim.scorecard;
+package com.bowlingsim.scoreCard;
 
 
-import com.bowlingsim.msgbox.MsgBox;
+import com.bowlingsim.msgBox.MsgBox;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;

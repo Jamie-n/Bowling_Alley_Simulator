@@ -1,4 +1,4 @@
-package com.bowlingsim.scorecard;
+package com.bowlingsim.scoreCard;
 
 
 import javafx.application.Application;

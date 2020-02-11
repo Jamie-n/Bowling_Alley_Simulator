@@ -1,6 +1,6 @@
-package com.bowlingsim.settletab;
+package com.bowlingsim.settleTab;
 
-import com.bowlingsim.scorecard.BowlingPlayer;
+import com.bowlingsim.scoreCard.BowlingPlayer;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;

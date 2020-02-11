@@ -1,6 +1,6 @@
-package com.bowlingsim.scorecard;
+package com.bowlingsim.scoreCard;
 
-import com.bowlingsim.foodmenu.CafeItem;
+import com.bowlingsim.foodMenu.CafeItem;
 
 import java.util.ArrayList;
 

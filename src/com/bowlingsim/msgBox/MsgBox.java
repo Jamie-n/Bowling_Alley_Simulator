@@ -1,4 +1,4 @@
-package com.bowlingsim.msgbox;
+package com.bowlingsim.msgBox;
 
 
 import javafx.scene.control.Alert;

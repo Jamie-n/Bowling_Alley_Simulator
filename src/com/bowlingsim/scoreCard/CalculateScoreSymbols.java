@@ -1,4 +1,4 @@
-package com.bowlingsim.scorecard;
+package com.bowlingsim.scoreCard;
 
 public class CalculateScoreSymbols {
 

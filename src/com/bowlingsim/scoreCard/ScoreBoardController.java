@@ -1,8 +1,8 @@
-package com.bowlingsim.scorecard;
+package com.bowlingsim.scoreCard;
 
-import com.bowlingsim.foodmenu.FoodMenuController;
-import com.bowlingsim.msgbox.MsgBox;
-import com.bowlingsim.settletab.SettleTabController;
+import com.bowlingsim.foodMenu.FoodMenuController;
+import com.bowlingsim.msgBox.MsgBox;
+import com.bowlingsim.settleTab.SettleTabController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
