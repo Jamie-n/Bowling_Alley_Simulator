@@ -1,7 +1,6 @@
 package com.bowlingsim.settleTab;
 
 import com.bowlingsim.scoreCard.BowlingPlayer;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -13,11 +12,11 @@ import java.util.Locale;
 
 public class SettleTabController {
 
-    public  ComboBox tabSelectComboBox;
+    public ComboBox<String> tabSelectComboBox;
     public Label tabTotalLbl;
     public Button cardBtn;
     public Button cashBtn;
-    private ArrayList<BowlingPlayer> playerList  = new ArrayList();
+    private ArrayList<BowlingPlayer> playerList  = new ArrayList<>();
     BowlingPlayer currentlySelected;
 
 
@@ -30,7 +29,7 @@ public class SettleTabController {
 
     }
 
-    public void tabSelected(ActionEvent actionEvent) {
+    public void tabSelected() {
         for(BowlingPlayer player : playerList){
             if(player.getName().equals(tabSelectComboBox.getValue())){
                 currentlySelected = player;
@@ -52,7 +51,7 @@ public class SettleTabController {
         }
     }
 
-    public void settleTabCash(ActionEvent actionEvent) {
+    public void settleTabCash() {
         if (currentlySelected.getCurrentTab() > 0) {
             currentlySelected.setCurrentTab(0.00);
             System.out.println("Tab Settled");
@@ -61,7 +60,7 @@ public class SettleTabController {
         }
     }
 
-    public void settleTabCard(ActionEvent actionEvent) {
+    public void settleTabCard() {
         if (currentlySelected.getCurrentTab() > 0) {
             currentlySelected.setCurrentTab(0.00);
             updateTotal();
