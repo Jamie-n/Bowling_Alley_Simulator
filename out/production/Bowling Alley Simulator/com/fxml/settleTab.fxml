@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="209.0" prefWidth="298.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingsim.settleTab.SettleTabController">
+   <center>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ComboBox fx:id="tabSelectComboBox" onAction="#tabSelected" prefHeight="25.0" prefWidth="314.0" promptText="Select Tab" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="tabTotalLbl" alignment="CENTER" contentDisplay="CENTER" prefHeight="169.0" prefWidth="287.0" text=" Total: £0.00" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <SplitPane prefHeight="38.0" prefWidth="298.0" BorderPane.alignment="CENTER">
+         <items>
+            <SplitPane cacheShape="false" centerShape="false" dividerPositions="0.5" focusTraversable="false" prefHeight="160.0" prefWidth="200.0" scaleShape="false">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="cashBtn" disable="true" layoutX="53.0" layoutY="6.0" mnemonicParsing="false" onAction="#settleTabCash" text="Cash" />
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="cardBtn" disable="true" layoutX="47.0" layoutY="6.0" mnemonicParsing="false" onAction="#settleTabCard" text="Card" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </items>
+      </SplitPane>
+   </bottom>
+</BorderPane>

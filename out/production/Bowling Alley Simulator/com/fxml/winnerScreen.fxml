@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="containerPane" prefHeight="303.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingalleysim.winnerScreen.WinnerScreen">
+   <center>
+      <HBox fx:id="midBox" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="winnerLabel" alignment="TOP_CENTER" prefHeight="120.0" prefWidth="217.0" text="The Winner">
+               <font>
+                  <Font name="Consolas Bold" size="13.0" />
+               </font>
+            </Label>
+         </children></HBox>
+   </center>
+   <top>
+      <HBox fx:id="topBox" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="gameOverLabel" alignment="CENTER" prefHeight="104.0" prefWidth="206.0" text="GAME OVER">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+            </Label>
+         </children></HBox>
+   </top>
+   <bottom>
+      <HBox fx:id="bottomBox" alignment="CENTER" prefHeight="101.0" prefWidth="192.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="okBtn" cache="true" cacheHint="SPEED" contentDisplay="CENTER" depthTest="ENABLE" mnemonicParsing="false" onAction="#exitPopUp" prefHeight="25.0" prefWidth="75.0" text="OK" textAlignment="CENTER">
+               <font>
+                  <Font name="Consolas Bold" size="13.0" />
+               </font>
+            </Button>
+         </children></HBox>
+   </bottom>
+</BorderPane>

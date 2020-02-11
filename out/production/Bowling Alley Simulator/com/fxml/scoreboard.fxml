@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="root" prefHeight="321.0" prefWidth="911.0" snapToPixel="false" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bowlingsim.scoreCard.ScoreBoardController">
+   <top>
+       <VBox fx:id="menuBox" BorderPane.alignment="CENTER">
+           <HBox fx:id="topHbox" prefHeight="0.0" prefWidth="623.0">
+               <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="963.0">
+                   <Menu fx:id="addPlayerMenu" mnemonicParsing="false" text="Player">
+                       <MenuItem fx:id="addPlayerMi" mnemonicParsing="false" onAction="#addPlayer" text="Add Player" />
+                   </Menu>
+               <Menu fx:id="cafeMenu" mnemonicParsing="false" onMenuValidation="#checkPlayers" text="Cafe">
+                 <items>
+                   <MenuItem fx:id="orderFoodMI" mnemonicParsing="false" onAction="#openFoodMenu" text="Food" />
+                     <SeparatorMenuItem fx:id="cafeSeperator" mnemonicParsing="false" />
+                     <MenuItem fx:id="settleTabMI" mnemonicParsing="false" onAction="#settleTab" text="Settle Tab" />
+                 </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Help">
+                 <items>
+                   <MenuItem mnemonicParsing="false" onAction="#help" text="Help" />
+                     <MenuItem mnemonicParsing="false" onAction="#versionDisplay" text="Version" />
+                     <MenuItem mnemonicParsing="false" onAction="#exitApp" text="Exit" />
+                 </items>
+               </Menu>
+               <opaqueInsets>
+                  <Insets left="30.0" right="30.0" />
+               </opaqueInsets>
+               </MenuBar>
+           </HBox>
+         <VBox fx:id="scoreBoardVbox">
+            <children>
+               <VBox fx:id="headerVbox" prefHeight="20.0" prefWidth="911.0">
+                  <children>
+                     <GridPane fx:id="ScoreboardHeader" alignment="TOP_CENTER" gridLinesVisible="true" minWidth="750.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="127.0" prefWidth="911.0">
+                        <rowConstraints>
+                           <RowConstraints maxHeight="20.0" minHeight="0.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                        </rowConstraints>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                        <columnConstraints>
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <cursor>
+                           <Cursor fx:constant="DEFAULT" />
+                        </cursor>
+                        <children>
+                           <Label fx:id="scoreboardHeader" text="Name" />
+                           <Label text="1" GridPane.columnIndex="1" />
+                           <Label text="2" GridPane.columnIndex="2" />
+                           <Label text="3" GridPane.columnIndex="3" />
+                           <Label text="4" GridPane.columnIndex="4" />
+                           <Label text="5" GridPane.columnIndex="5" />
+                           <Label text="6" GridPane.columnIndex="6" />
+                           <Label text="7" GridPane.columnIndex="7" />
+                           <Label text="8" GridPane.columnIndex="8" />
+                           <Label text="9" GridPane.columnIndex="9" />
+                           <Label text="10" GridPane.columnIndex="10" />
+                           <Label text="11" GridPane.columnIndex="11" />
+                           <Label text="12" GridPane.columnIndex="12" />
+                           <Label text="Score" GridPane.columnIndex="13" />
+                        </children>
+                     </GridPane>
+                  </children>
+               </VBox>
+               <VBox fx:id="scoreBoardContainer" prefHeight="210.0" prefWidth="911.0" VBox.vgrow="ALWAYS">
+                  <children>
+                     <GridPane fx:id="gridPane" alignment="TOP_CENTER" minWidth="750.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="340.0" prefWidth="911.0">
+                       <rowConstraints>
+                           <RowConstraints maxHeight="20.0" minHeight="0.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                       </rowConstraints>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                        <columnConstraints>
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
+                        </columnConstraints>
+                        <cursor>
+                           <Cursor fx:constant="DEFAULT" />
+                        </cursor>
+                     </GridPane>
+                  </children>
+               </VBox>
+            </children>
+         </VBox>
+       </VBox>
+   </top>
+   <center>
+      <HBox fx:id="centerBox" alignment="BOTTOM_CENTER" prefHeight="79.0" prefWidth="896.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="bowlBall" alignment="BOTTOM_CENTER" disable="true" graphicTextGap="5.0" mnemonicParsing="false" onAction="#bowlBall" text="Bowl Ball" textAlignment="CENTER">
+               <font>
+                  <Font name="Calibri Bold Italic" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>
