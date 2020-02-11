@@ -29,9 +29,9 @@ public class BowlingPlayer {
 
     }
 
-    public ArrayList<Integer> throw1Array = new ArrayList<>();
-    public ArrayList<Integer> throw2Array = new ArrayList<>();
-    public ArrayList<CafeItem> itemsConsumed = new ArrayList<>();
+    private ArrayList<Integer> throw1Array = new ArrayList<>();
+    private ArrayList<Integer> throw2Array = new ArrayList<>();
+    private ArrayList<CafeItem> itemsConsumed = new ArrayList<>();
 
     public Integer getStrikeInRow() {
         return strikeInRow;
@@ -72,6 +72,19 @@ public class BowlingPlayer {
     public void addThrow2(Integer score2) {
         throw2Array.add(score2);
     }
+
+    public int getThrowArray1Size(){
+        return this.throw1Array.size();
+    }
+
+    public void addThrow1AtIndex(Integer index, Integer score){
+        this.throw1Array.add(index,score);
+    }
+
+    public void addThrow2AtIndex(Integer index, Integer score){
+        this.throw2Array.add(index,score);
+    }
+
 
 
     public String getName() {
@@ -118,6 +131,17 @@ public class BowlingPlayer {
         this.setTotalScore(this.getTotalScore() + score);
     }
 
+    public void addItemConsumed(CafeItem food){
+        this.itemsConsumed.add(food);
+    }
+
+    public void addAllItemsConsumed(ArrayList<CafeItem> shoppingBasket){
+        this.itemsConsumed.addAll(shoppingBasket);
+    }
+
+    public CafeItem getItemConsumed(Integer index){
+        return this.itemsConsumed.get(index);
+    }
 }
 
 

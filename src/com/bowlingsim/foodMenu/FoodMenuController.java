@@ -30,8 +30,8 @@ public class FoodMenuController {
     private Boolean drinkTabFocus;
 
 
-    ArrayList<BowlingPlayer> playerList;
-    ArrayList<CafeItem> foodShoppingBasket = new ArrayList<>();
+    private ArrayList<BowlingPlayer> playerList;
+    private ArrayList<CafeItem> foodShoppingBasket = new ArrayList<>();
 
 
     public void onStart(ArrayList<BowlingPlayer> tempList, Stage stage) {
@@ -88,7 +88,7 @@ public class FoodMenuController {
             for (BowlingPlayer player : playerList) {
                 if (player.getName().equals(playerNameComboBox.getValue())) {
                     player.setCurrentTab(player.getCurrentTab() + shoppingBasketTotal);
-                    player.itemsConsumed.addAll(foodShoppingBasket);
+                    player.addAllItemsConsumed(foodShoppingBasket);
                     new MsgBox().showInfoBox("Order Placed","Thank you for the order","The sub total for your order " + cf.format(shoppingBasketTotal) + " has been placed on " + player.getName() + "'s tab.", Alert.AlertType.CONFIRMATION);
 
                     root.close();

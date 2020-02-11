@@ -123,14 +123,13 @@ public class BowlingAlleyController {
                 player.setGameOver(true);
             } else if (currentRound == 11) {
                 player.setGameOver(true);
-                player.throw1Array.add(currentRound + 1);
             }
 
         }
 
 
         //Checks for a double spare at the start of the game
-        if (player.throw1Array.size() >= 1 && (totalLastFrame) == 10 && (totalForFrame) == 10) {
+        if (player.getThrowArray1Size() >= 1 && (totalLastFrame) == 10 && (totalForFrame) == 10) {
             player.setOnSpare(true);
         } else {
             player.setOnSpare(false);
@@ -181,7 +180,7 @@ public class BowlingAlleyController {
             if (currentRound == 10 && totalLastFrame == 10 && player.getThrow1(currentRound - 1) != 10) {
                 bonusPoints = 10 + extraFrameSpare;
                 player.updateScore(bonusPoints);
-                player.throw2Array.add(currentRound + 1, 0);
+                player.addThrow2AtIndex(currentRound + 1, 0);
                 player.setGameOver(true);
             } else {
 

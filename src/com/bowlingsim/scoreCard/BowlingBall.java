@@ -11,6 +11,8 @@ public class BowlingBall {
         player.setRoundsPlayed(player.getRoundsPlayed() + 1);
         int bowl1 = ThreadLocalRandom.current().nextInt(0, 10+1);
 
+        System.out.println(bowl1);
+
         if(bowl1 == 10){
             player.addThrow1(bowl1);
             player.addThrow2(0);
@@ -20,7 +22,5 @@ public class BowlingBall {
             player.addThrow2(bowl2);
             player.addThrow1(bowl1);
         }
-
-        System.out.println(bowl1+" "+ player.getThrow2(0));
     }
 }
