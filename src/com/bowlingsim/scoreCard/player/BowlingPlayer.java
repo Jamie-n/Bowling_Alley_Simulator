@@ -1,6 +1,6 @@
-package com.bowlingsim.scoreCard;
+package com.bowlingsim.scoreCard.player;
 
-import com.bowlingsim.foodMenu.CafeItem;
+import com.bowlingsim.foodMenu.menuItem.MenuItem;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class BowlingPlayer {
 
     private ArrayList<Integer> throw1Array = new ArrayList<>();
     private ArrayList<Integer> throw2Array = new ArrayList<>();
-    private ArrayList<CafeItem> itemsConsumed = new ArrayList<>();
+    private ArrayList<MenuItem> itemsConsumed = new ArrayList<MenuItem>();
 
     public Integer getStrikeInRow() {
         return strikeInRow;
@@ -85,14 +85,8 @@ public class BowlingPlayer {
         this.throw2Array.add(index,score);
     }
 
-
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Integer getTotalScore() {
@@ -123,24 +117,31 @@ public class BowlingPlayer {
         return currentTab;
     }
 
-    public void setCurrentTab(Double currentTab) {
-        this.currentTab = currentTab;
+    public void updateTab(Double currentTab) {
+        this.currentTab =+ currentTab;
+    }
+
+    public void settleTab(){
+        this.currentTab = 0.0;
     }
 
     public void updateScore(Integer score) {
         this.setTotalScore(this.getTotalScore() + score);
     }
 
-    public void addItemConsumed(CafeItem food){
-        this.itemsConsumed.add(food);
-    }
 
-    public void addAllItemsConsumed(ArrayList<CafeItem> shoppingBasket){
+    public void addAllItemsConsumed(ArrayList<MenuItem> shoppingBasket){
         this.itemsConsumed.addAll(shoppingBasket);
     }
 
-    public CafeItem getItemConsumed(Integer index){
+    public MenuItem getItemConsumed(Integer index){
         return this.itemsConsumed.get(index);
+    }
+
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }
 

@@ -2,6 +2,7 @@ package com.bowlingsim.scoreCard;
 
 import com.bowlingsim.foodMenu.FoodMenuController;
 import com.bowlingsim.msgBox.MsgBox;
+import com.bowlingsim.scoreCard.player.PlayerController;
 import com.bowlingsim.settleTab.SettleTabController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -49,7 +50,7 @@ public class ScoreBoardController {
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.APPLICATION_MODAL);
             FoodMenuController controller = fxmlLoader.getController();
-            controller.onStart(alley.playerList, stage);
+            controller.onStart(PlayerController.getPlayerArrayList(), stage);
             stage.show();
 
         } catch (Exception e) {
@@ -68,7 +69,7 @@ public class ScoreBoardController {
             stage.setTitle("Settle Tab");
             stage.initModality(Modality.APPLICATION_MODAL);
             SettleTabController controller = fxmlLoader.getController();
-            controller.onStart(alley.playerList);
+            controller.onStart(PlayerController.getPlayerArrayList());
             stage.show();
 
         } catch (Exception e) {
@@ -78,8 +79,8 @@ public class ScoreBoardController {
 
 
     public void checkPlayers() {
-        if (alley.playerList.size() == 0) {
-            new MsgBox().showInfoBox("Zero Players", "You cannot order food or drinks without a tab", "To open a tab add a player", Alert.AlertType.WARNING);
+        if (PlayerController.getPlayerArrayList().size() == 0) {
+            new MsgBox().showInfoBox("Zero Players", "You cannot order food or drinks without a tab", "To open a tab add a com.bowlingsim.scoreCard.player", Alert.AlertType.WARNING);
             orderFoodMI.setVisible(false);
 
 
@@ -98,7 +99,7 @@ public class ScoreBoardController {
         String userName = playerAdd.getEditor().getText();
 
         if (userName.equals("Enter Player Name") || userName.length() == 0) {
-            new MsgBox().showInfoBox("No Name", "Please Add Player", "You must add the name of a player", Alert.AlertType.ERROR);
+            new MsgBox().showInfoBox("No Name", "Please Add Player", "You must add the name of a com.bowlingsim.scoreCard.player", Alert.AlertType.ERROR);
 
         } else {
             addRow(userName);

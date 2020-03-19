@@ -1,5 +1,7 @@
 package com.bowlingsim.scoreCard;
 
+import com.bowlingsim.scoreCard.player.BowlingPlayer;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class BowlingBall {

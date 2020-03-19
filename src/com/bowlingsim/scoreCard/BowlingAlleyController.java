@@ -2,6 +2,8 @@ package com.bowlingsim.scoreCard;
 
 
 import com.bowlingsim.msgBox.MsgBox;
+import com.bowlingsim.scoreCard.player.BowlingPlayer;
+import com.bowlingsim.scoreCard.player.PlayerController;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -12,34 +14,31 @@ import java.util.ArrayList;
 
 public class BowlingAlleyController {
 
-    public ArrayList<BowlingPlayer> playerList = new ArrayList<>();
-    public int currentPlayer;
+    private int currentPlayer;
 
 
     BowlingBall ball = new BowlingBall();
 
-    public void addPlayer(String name) {
-        playerList.add(new BowlingPlayer(name));
-    }
-
-
-    public Integer getScore(Integer index) {
-        return playerList.get(index).getTotalScore();
-    }
+    BowlingPlayer currentBowler;
+    ArrayList<BowlingPlayer> bowlingPlayers = new ArrayList<>();
 
 
     public void updateScore(GridPane gridPane) {
-        if (playerList.get(currentPlayer).getGameOver()) {
+        currentBowler = PlayerController.getPlayer(currentPlayer);
+
+
+        if (currentBowler.getGameOver()) {
             System.out.println(currentPlayer);
             if (currentPlayer == 0) {
-                getWinner(this.playerList);
+                getWinner(bowlingPlayers);
             }
         } else {
-            int currentPlayerRound = playerList.get(currentPlayer).getRoundsPlayed();
-            if (currentPlayerRound < (this.playerList.size() * 12) || playerList.get(currentPlayerRound).getThrow2(currentPlayerRound - 1) + playerList.get(currentPlayer).getThrow1(currentPlayerRound - 1) == 10) {
+            int currentPlayerRound = currentBowler.getRoundsPlayed();
+            System.out.println(currentPlayerRound);
+            if (currentPlayerRound < (bowlingPlayers.size() * 12)){//|| currentBowler.getThrow2(currentPlayerRound - 1) + currentBowler.getThrow1(currentPlayerRound - 1) == 10) {
 
-                ball.bowlBall(this.playerList.get(currentPlayer));
-                calculateScore(playerList.get(currentPlayer), gridPane);
+                ball.bowlBall(currentBowler);
+                calculateScore(currentBowler, gridPane);
 
                 currentPlayer += 1;
 
@@ -67,7 +66,9 @@ public class BowlingAlleyController {
 
 
     public void addRows(GridPane gridPane, String playerName) {
-        int numberOfPlayers = playerList.size();
+        bowlingPlayers = PlayerController.getPlayerArrayList();
+
+        int numberOfPlayers = bowlingPlayers.size();
         if (numberOfPlayers != 8) {
             gridPane.add(new Label(playerName), 0, numberOfPlayers);
             gridPane.add(new Label("0"), 13, numberOfPlayers);
@@ -76,7 +77,7 @@ public class BowlingAlleyController {
                 gridPane.add(new Label(" "), i, numberOfPlayers);
 
             }
-            this.addPlayer(playerName);
+            PlayerController.addPlayer(playerName);
         } else {
             new MsgBox().showInfoBox("Too Many Players", "Too Many Players", "Can only have a maximum of 8 players", Alert.AlertType.WARNING);
         }
@@ -207,7 +208,7 @@ public class BowlingAlleyController {
         ObservableList<Node> children = gridPane.getChildrenUnmodifiable();
         for (Node node : children) {
             if (node instanceof Label && GridPane.getRowIndex(node) == currentPlayer && GridPane.getColumnIndex(node) == 13) {
-                ((Label) node).setText(String.valueOf(this.getScore(currentPlayer)));
+                ((Label) node).setText(String.valueOf(currentBowler.getTotalScore()));
             }
         }
 
