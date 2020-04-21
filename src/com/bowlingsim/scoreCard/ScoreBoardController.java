@@ -37,6 +37,7 @@ public class ScoreBoardController {
 
     public void bowlBall() {
         alley.updateScore(gridPane);
+        addPlayerMi.setVisible(false);
     }
 
 
